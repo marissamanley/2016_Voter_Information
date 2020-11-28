@@ -44,7 +44,6 @@ int States::getElectoralVotes() {
  * offset brings you to the state that you want to visit.
  * Ex: Offset = 0 brings you to first state, Alabama
  * States are in alphabetical order in csv
- * 
  */
 void States::readCSV(string filePath, int offset) {
 	ifstream file(filePath);
