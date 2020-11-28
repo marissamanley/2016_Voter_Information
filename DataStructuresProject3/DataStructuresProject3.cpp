@@ -32,6 +32,11 @@ int main()
     createVoters();
 }
 
+/*
+ * All state and district information are obtained in the CSV master file
+ * The values in the CSV are based off the results of the 2020 election
+ * All information is gathered from here: http://www.electproject.org/2020g
+ */
 void printStates() 
 {
     States createStates;
@@ -74,10 +79,14 @@ void createVoters() {
     int repCount = 0;
     int otherCount = 0;
     auto iter = createStates.stateMap.begin();
+    //loops through every state
     for (iter; iter != createStates.stateMap.end(); iter++) {
+        //loops through every district within that state
         for (int district = 0; district < iter->second.getNumDistricts(); district++) {
             auto curDistrict = createStates.districtMap[iter->second.getState()][district];
+            //loops through the number of voters within that district
             for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
+                //generates what party the voter is voting for
                 Voter::party castVote = Voter::vote(curDistrict.getPercentDem(), curDistrict.getPercentRep(), curDistrict.getPercentOther());
                 //Insert into Splay tree here
                 switch (castVote)

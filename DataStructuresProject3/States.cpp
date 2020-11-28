@@ -3,6 +3,8 @@
 map<int, States> States::stateMap;
 map<string, vector<Districts>> States::districtMap;
 
+//created so you can instantiate a states object to call the readCSV function
+//Might move readCSV and maps elsewhere for modularity and separation of tasks
 States::States() {};
 
 States::States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes) {
@@ -40,6 +42,7 @@ int States::getElectoralVotes() {
 }
 
 /*
+ * Reads the District_map CSV file to form the stateMap and DistrictMap structures
  * Reads in voter information for each district in each state
  * offset brings you to the state that you want to visit.
  * Ex: Offset = 0 brings you to first state, Alabama
