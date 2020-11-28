@@ -7,7 +7,7 @@ int Random::Int(int min, int max) {
 	return dist(random);
 }
 
-int Random::Float(float min, float max) {
+float Random::Float(float min, float max) {
 	std::uniform_real_distribution<float> dist(min, max);
 	return dist(random);
 }

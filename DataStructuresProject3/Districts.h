@@ -35,8 +35,5 @@ public:
 
 	string getRepublican();
 	void setRepublican(string rep);
-
-
-
 };
 
