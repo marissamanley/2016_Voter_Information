@@ -1,4 +1,7 @@
 #pragma once
+#include <string>
+using namespace std;
+
 class Districts
 {
 private:
@@ -7,7 +10,30 @@ private:
 	float percentDem;
 	float percentRep;
 	float percentOther;
+	string democrat;
+	string republican;
+
 public:
-	Districts(int district, int voterCapacity, float percentDem, float percentRep, float percentOther);
+	Districts(int district, int voterCapacity, float percentDem, float percentRep, string democratRep, string republicanRep);
+	int getDistrict();
+	void setDistrict(int district);
+
+	int getVoterCapacity();
+	void setVoterCapacity(int voterCapacity);
+
+	float getPercentDem();
+	void setPercentDem(float percentDem);
+
+	float getPercentRep();
+	void setPercentRep(float percentDem);
+
+	string getDemocrat();
+	void setDemocrat(string dem);
+
+	string getRepublican();
+	void setRepublican(string rep);
+
+
+
 };
 
