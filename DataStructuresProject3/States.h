@@ -25,7 +25,7 @@ public:
 
 	States();
 	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);
-	void readCSV(string filePath, int offset);
+	void readCSV(string filePath, int offset = 0);
 
 	string getState();
 	string getDemSenator();

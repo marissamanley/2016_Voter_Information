@@ -141,11 +141,15 @@
   <ItemGroup>
     <ClCompile Include="DataStructuresProject3.cpp" />
     <ClCompile Include="Districts.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="States.cpp" />
+    <ClCompile Include="Voter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Districts.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="States.h" />
+    <ClInclude Include="Voter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

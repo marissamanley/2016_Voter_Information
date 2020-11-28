@@ -9,13 +9,23 @@ void printStates();
 
 int main()
 {
-    printStates();
+    //printStates();
+
+
+
+    States createStates;
+    createStates.readCSV("District_map.csv");
+    auto iter = createStates.stateMap.begin();
+    for (iter; iter != createStates.stateMap.end(); iter++) {
+
+    }
+
 }
 
 void printStates() 
 {
     States createStates;
-    createStates.readCSV("District_map.csv", 0);
+    createStates.readCSV("District_map.csv");
     auto iter = createStates.stateMap.begin();
     for (iter; iter != createStates.stateMap.end(); iter++) {
         string state = iter->second.getState();
