@@ -17,19 +17,21 @@ private:
 	int numDistricts;
 	string demSenator;
 	string repSenator;
+	int electoralVotes;
 
 public:
 	static map<int, States> stateMap;
 	static map<string, vector<Districts>> districtMap;
 
 	States();
-	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator);
+	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);
 	void readCSV(string filePath, int offset);
 
 	string getState();
 	string getDemSenator();
 	string getRepSenator();
 	int getVoterCapacity();
-	int getnumDistricts();
+	int getNumDistricts();
+	int getElectoralVotes();
 };
 

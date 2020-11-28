@@ -27,6 +27,9 @@ public:
 	float getPercentRep();
 	void setPercentRep(float percentDem);
 
+	float getPercentOther();
+	void setPercentOther(float percentOther);
+
 	string getDemocrat();
 	void setDemocrat(string dem);
 

@@ -1,15 +1,17 @@
 #include "States.h"
 
-map<string, vector<Districts>> States::stateMap;
+map<int, States> States::stateMap;
+map<string, vector<Districts>> States::districtMap;
 
 States::States() {};
 
-States::States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator) {
+States::States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes) {
 	this->state = state;
 	this->voterCapacity = voterCapacity;
 	this->numDistricts = numDistricts;
 	this->demSenator = demSenator;
 	this->repSenator = repSenator;
+	this->electoralVotes = electoralVotes;
 }
 
 
@@ -25,12 +27,16 @@ string States::getRepSenator() {
 	return this->repSenator;
 }
 
-int States::getnumDistricts() {
+int States::getNumDistricts() {
 	return this->numDistricts;
 }
 
 int States::getVoterCapacity() {
 	return this->voterCapacity;
+}
+
+int States::getElectoralVotes() {
+	return this->electoralVotes;
 }
 
 /*
@@ -66,11 +72,15 @@ void States::readCSV(string filePath, int offset) {
 		getline(streamFromAString, voters, ',');
 		int numVoters = stoi(voters);
 
+		string electoralVotes_;
+		getline(streamFromAString, electoralVotes_, ',');
+		int electoralVotes = stoi(electoralVotes_);
+
 		string numDistrics_;
 		getline(streamFromAString, numDistrics_, ',');
 		int numDistricts = stoi(numDistrics_);
 
-		States state(stateName, numVoters, numDistricts, demRep, repRep);
+		States state(stateName, numVoters, numDistricts, demRep, repRep, electoralVotes);
 		stateMap.emplace(stateIndex, state);
 
 		vector<Districts> districts;

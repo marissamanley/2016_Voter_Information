@@ -26,6 +26,10 @@ float Districts::getPercentRep() {
 	return this->percentRep;
 }
 
+float Districts::getPercentOther() {
+	return this->percentOther;
+}
+
 string Districts::getDemocrat() {
 	return this->democrat;
 }
