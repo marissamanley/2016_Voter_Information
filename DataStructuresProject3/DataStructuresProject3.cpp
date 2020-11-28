@@ -79,6 +79,7 @@ void createVoters() {
             auto curDistrict = createStates.districtMap[iter->second.getState()][district];
             for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
                 Voter::party castVote = Voter::vote(curDistrict.getPercentDem(), curDistrict.getPercentRep(), curDistrict.getPercentOther());
+                //Insert into Splay tree here
                 switch (castVote)
                 {
                 case Voter::DEM:
