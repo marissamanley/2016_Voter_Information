@@ -38,7 +38,10 @@ private:
 	string repSenator;
 	int electoralVotes;
 
+
 public:
+	//make unordered_map instead
+	//change key from int to string
 	static map<int, States> stateMap;
 	static map<string, vector<Districts>> districtMap;
 

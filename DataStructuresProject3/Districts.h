@@ -8,7 +8,7 @@ using namespace std;
  *	- Number of voters
  *  - Names of the candidates for the US House of Representatives
  *	- Makeup of the party representation within the district
- *		- This is based off of the votes for te 2020 election
+ *		- This is based off of the votes for the 2020 election
  * 
  * Districts are not meant to exist on their own. They exist within a list for each state.
  * All votes are cast at the district level, thus the senate and national election results will be 
