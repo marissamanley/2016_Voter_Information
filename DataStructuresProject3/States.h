@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
@@ -45,6 +46,7 @@ public:
 	//change key from int to string
 	static map<int, States> stateMap;
 	static map<string, vector<Districts>> districtMap;
+	unordered_map<int, Districts> districtMapTwo;
 
 	States();
 	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);

@@ -1,14 +1,17 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "States.h"
 #include "Districts.h"
 #include "Voter.h"
 using namespace std;
 
 void printStates();
+void printStatesTwo(unordered_map<string, States> s);
 void createVoters();
-
+void createVotersTwo(unordered_map<string, States>& s);
+void readCSVTwo(string filePath, int offset, unordered_map<string, States> &s);
 
 /*
  * TODO:
@@ -28,8 +31,11 @@ void createVoters();
  */
 int main()
 {
-    printStates();
-    createVoters();
+    unordered_map<string, States> statesTwo;
+    readCSVTwo("District_map.csv", 0, statesTwo);
+    printStatesTwo(statesTwo);
+    //printStates();
+    //createVoters();
 }
 
 /*
@@ -59,6 +65,29 @@ void printStates()
             cout << "Dem Percentage: " << curDistrict.getPercentDem() * 100 << "%" << endl;
             cout << "Rep Percentage: " << curDistrict.getPercentRep() * 100 << "%" << endl;
             cout << "Third Party Percentage: " << curDistrict.getPercentOther() * 100 << "%" << endl << endl;
+        }
+    }
+}
+
+void printStatesTwo(unordered_map<string, States> s)
+{
+    auto iter = s.begin();
+    for (iter; iter != s.end(); iter++) {
+        cout << "State: " << iter->first << endl;
+        cout << "Democrat Senator: " << iter->second.getDemSenator() << endl;
+        cout << "Republican Senator: " << iter->second.getRepSenator() << endl;
+        cout << "Number of voters: " << iter->second.getVoterCapacity() << endl;
+        cout << "Number of electoral votes: " << iter->second.getElectoralVotes() << endl << endl;
+
+        for (auto it = iter->second.districtMapTwo.begin(); it != iter->second.districtMapTwo.end(); it++)
+        {
+            cout << "District Number: " << it->second.getDistrict() << endl;
+            cout << "Number of voters: " << it->second.getVoterCapacity() << endl;
+            cout << "Democrat Representative: " << it->second.getDemocrat() << endl;
+            cout << "Republican Representative: " << it->second.getRepublican() << endl;
+            cout << "Dem Percentage: " << it->second.getPercentDem() * 100 << "%" << endl;
+            cout << "Rep Percentage: " << it->second.getPercentRep() * 100 << "%" << endl;
+            cout << "Third Party Percentage: " << it->second.getPercentOther() * 100 << "%" << endl << endl;
         }
     }
 }
@@ -110,6 +139,74 @@ void createVoters() {
     cout << "Rep Count: " << repCount << endl;
     cout << "Third Party Count: " << otherCount << endl;
 }
+
+void createVotersTwo(unordered_map<string, States>& s)
+{
+}
+
+void readCSVTwo(string filePath, int offset, unordered_map<string, States> &s) {
+    ifstream file(filePath);
+    string lineFromFile;
+
+    //Offset plus skipping first two rows
+    for (int i = 0; i < offset + 2; i++) {
+        getline(file, lineFromFile);
+    }
+
+    int stateIndex = 0;
+    while (getline(file, lineFromFile)) {
+        istringstream streamFromAString(lineFromFile);
+
+        string stateName;
+        getline(streamFromAString, stateName, ',');
+
+        string demRep;
+        getline(streamFromAString, demRep, ',');
+
+        string repRep;
+        getline(streamFromAString, repRep, ',');
+
+        string voters;
+        getline(streamFromAString, voters, ',');
+        int numVoters = stoi(voters);
+
+        string electoralVotes_;
+        getline(streamFromAString, electoralVotes_, ',');
+        int electoralVotes = stoi(electoralVotes_);
+
+        string numDistrics_;
+        getline(streamFromAString, numDistrics_, ',');
+        int numDistricts = stoi(numDistrics_);
+
+        States state(stateName, numVoters, numDistricts, demRep, repRep, electoralVotes);
+        
+
+        for (int i = 0; i < numDistricts; i++) {
+            string districtNumber_;
+            getline(streamFromAString, districtNumber_, ',');
+            int districtNumber = stoi(districtNumber_);
+
+            getline(streamFromAString, voters, ',');
+            numVoters = stoi(voters);
+
+            getline(streamFromAString, demRep, ',');
+            getline(streamFromAString, repRep, ',');
+
+            string percentDem;
+            getline(streamFromAString, percentDem, ',');
+            float perDem = stof(percentDem);
+
+            string percentRep;
+            getline(streamFromAString, percentRep, ',');
+            float perRep = stof(percentRep);
+
+            Districts district(districtNumber, numVoters, perDem, perRep, demRep, repRep);
+            state.districtMapTwo.emplace(districtNumber, district);
+        }
+        s.emplace(stateName, state);
+    }
+}
+
 
 
 
