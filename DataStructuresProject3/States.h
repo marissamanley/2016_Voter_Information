@@ -48,15 +48,11 @@ private:
 
 
 public:
-	//make unordered_map instead
-	//change key from int to string
-	static unordered_map<string, States> stateMap;
-	static unordered_map<string, vector<Districts>> districtMap;
+	
 	unordered_map<int, Districts> districtMapTwo;
 
 	States();
 	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);
-	void readCSV(string filePath, int offset = 0);
 
 	string getState();
 	string getDemSenator();
