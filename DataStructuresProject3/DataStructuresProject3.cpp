@@ -11,7 +11,6 @@ using namespace std;
 void printStates();
 void createVoters();
 
-
 /*
  * TODO:
  *  - Fill out CSV for every state
@@ -30,9 +29,6 @@ void createVoters();
  */
 int main()
 {
-    //unordered_map<string, States> statesTwo;
-    //readCSVTwo("District_map.csv", 0, statesTwo);
-    //printStatesTwo(statesTwo);
     DataHandler::initData();
     printStates();
     createVoters();
