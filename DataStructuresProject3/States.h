@@ -50,8 +50,8 @@ private:
 public:
 	//make unordered_map instead
 	//change key from int to string
-	static map<int, States> stateMap;
-	static map<string, vector<Districts>> districtMap;
+	static unordered_map<string, States> stateMap;
+	static unordered_map<string, vector<Districts>> districtMap;
 	unordered_map<int, Districts> districtMapTwo;
 
 	States();

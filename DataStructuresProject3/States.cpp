@@ -1,7 +1,7 @@
 #include "States.h"
 
-map<int, States> States::stateMap;
-map<string, vector<Districts>> States::districtMap;
+unordered_map<string, States> States::stateMap;
+unordered_map<string, vector<Districts>> States::districtMap;
 
 //created so you can instantiate a states object to call the readCSV function
 //Might move readCSV and maps elsewhere for modularity and separation of tasks
@@ -117,7 +117,6 @@ void States::readCSV(string filePath, int offset) {
 		getline(file, lineFromFile);
 	}
 
-	int stateIndex = 0;
 	while (getline(file, lineFromFile)) {
 		istringstream streamFromAString(lineFromFile);
 
@@ -143,7 +142,7 @@ void States::readCSV(string filePath, int offset) {
 		int numDistricts = stoi(numDistrics_);
 
 		States state(stateName, numVoters, numDistricts, demRep, repRep, electoralVotes);
-		stateMap.emplace(stateIndex, state);
+		stateMap.emplace(stateName, state);
 
 		vector<Districts> districts;
 		for (int i = 0; i < numDistricts; i++) {
@@ -169,7 +168,6 @@ void States::readCSV(string filePath, int offset) {
 			districts.push_back(district);
 		}
 		districtMap.emplace(stateName, districts);
-		stateIndex++;
 	}
 }
 

@@ -31,11 +31,13 @@ void readCSVTwo(string filePath, int offset, unordered_map<string, States> &s);
  */
 int main()
 {
-    unordered_map<string, States> statesTwo;
-    readCSVTwo("District_map.csv", 0, statesTwo);
-    printStatesTwo(statesTwo);
-    //printStates();
-    //createVoters();
+    //unordered_map<string, States> statesTwo;
+    //readCSVTwo("District_map.csv", 0, statesTwo);
+    //printStatesTwo(statesTwo);
+    printStates();
+    createVoters();
+
+    return 0;
 }
 
 /*
