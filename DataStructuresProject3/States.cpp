@@ -16,7 +16,7 @@ States::States(string state, int voterCapacity, int numDistricts, string demSena
 	this->electoralVotes = electoralVotes;
 }
 
-
+//A bunch of get and set functions for variables in this class
 string States::getState() {
 	return this->state;
 }
@@ -39,6 +39,66 @@ int States::getVoterCapacity() {
 
 int States::getElectoralVotes() {
 	return this->electoralVotes;
+}
+
+float States::getPerDemPres()
+{
+	return percentDemPres;
+}
+
+float States::getPerRepPres()
+{
+	return percentRepPres;
+}
+
+float States::getPerOtherPres()
+{
+	return percentOtherPres;
+}
+
+float States::getPerDemSen()
+{
+	return percentDemSen;
+}
+
+float States::getPerRepSen()
+{
+	return percentRepSen;
+}
+
+float States::getPerOtherSen()
+{
+	return percentOtherSen;
+}
+
+void States::setPerDemPres(float f)
+{
+	percentDemPres = f;
+}
+
+void States::setPerRepPres(float f)
+{
+	percentRepPres = f;
+}
+
+void States::setPerOtherPres(float f)
+{
+	percentOtherPres = f;
+}
+
+void States::setPerDemSen(float f)
+{
+	percentDemSen = f;
+}
+
+void States::setPerRepSen(float f)
+{
+	percentRepSen = f;
+}
+
+void States::setPerOtherSen(float f)
+{
+	percentOtherSen = f;
 }
 
 /*

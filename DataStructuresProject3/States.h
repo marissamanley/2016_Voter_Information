@@ -39,6 +39,12 @@ private:
 	string demSenator;
 	string repSenator;
 	int electoralVotes;
+	float percentDemPres;
+	float percentRepPres;
+	float percentOtherPres;
+	float percentDemSen;
+	float percentRepSen;
+	float percentOtherSen;
 
 
 public:
@@ -58,5 +64,18 @@ public:
 	int getVoterCapacity();
 	int getNumDistricts();
 	int getElectoralVotes();
+	float getPerDemPres();
+	float getPerRepPres();
+	float getPerOtherPres();
+	float getPerDemSen();
+	float getPerRepSen();
+	float getPerOtherSen();
+	void setPerDemPres(float f);
+	void setPerRepPres(float f);
+	void setPerOtherPres(float f);
+	void setPerDemSen(float f);
+	void setPerRepSen(float f);
+	void setPerOtherSen(float f);
+
 };
 
