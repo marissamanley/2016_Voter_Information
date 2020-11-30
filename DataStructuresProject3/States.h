@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
@@ -26,6 +27,7 @@ using namespace std;
  * 
  * readCSV initializes these maps
  */
+//hi
 
 
 class States
@@ -37,13 +39,20 @@ private:
 	string demSenator;
 	string repSenator;
 	int electoralVotes;
+	float percentDemPres;
+	float percentRepPres;
+	float percentOtherPres;
+	float percentDemSen;
+	float percentRepSen;
+	float percentOtherSen;
 
 
 public:
 	//make unordered_map instead
 	//change key from int to string
-	static map<int, States> stateMap;
-	static map<string, vector<Districts>> districtMap;
+	static unordered_map<string, States> stateMap;
+	static unordered_map<string, vector<Districts>> districtMap;
+	unordered_map<int, Districts> districtMapTwo;
 
 	States();
 	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);
@@ -55,5 +64,18 @@ public:
 	int getVoterCapacity();
 	int getNumDistricts();
 	int getElectoralVotes();
+	float getPerDemPres();
+	float getPerRepPres();
+	float getPerOtherPres();
+	float getPerDemSen();
+	float getPerRepSen();
+	float getPerOtherSen();
+	void setPerDemPres(float f);
+	void setPerRepPres(float f);
+	void setPerOtherPres(float f);
+	void setPerDemSen(float f);
+	void setPerRepSen(float f);
+	void setPerOtherSen(float f);
+
 };
 
