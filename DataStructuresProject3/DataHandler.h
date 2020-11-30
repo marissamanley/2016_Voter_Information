@@ -4,7 +4,7 @@
 
 /*
  * The purpose of this class is to initialize the data from the CSV file and store it within unordered_maps
- * These maps can be access from anywhere
+ * Class can potentially be used for taking in and holding election results
 
  * stateMap:
  *	- Assigns each state object (that holds all of the above information) to a numeric value
