@@ -28,6 +28,7 @@ private:
 	string republican;
 
 public:
+	Districts() {};
 	Districts(int district, int voterCapacity, float percentDem, float percentRep, string democratRep, string republicanRep);
 
 	//set functions there for potential modularity 

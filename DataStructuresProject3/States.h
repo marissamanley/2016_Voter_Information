@@ -17,15 +17,6 @@ using namespace std;
  *  - Number of districts within the state
  *  - Names of the senators running for office (have not accounted for multiple senate races yet)
  *  - Number of votes the state has in the electoral college
- * 
- * This class also contains the stateMap and districtMap maps
- * stateMap:
- *	- Assigns each state object (that holds all of the above information) to a numeric value
- * 
- * districtMap
- *	- Assigns the name of each state to a vector of District objects that are within that state
- * 
- * readCSV initializes these maps
  */
 //hi
 
@@ -46,17 +37,12 @@ private:
 	float percentRepSen;
 	float percentOtherSen;
 
-
 public:
-	//make unordered_map instead
-	//change key from int to string
-	static unordered_map<string, States> stateMap;
-	static unordered_map<string, vector<Districts>> districtMap;
-	unordered_map<int, Districts> districtMapTwo;
+	
+	static unordered_map<int, Districts> districtMap;
 
 	States();
 	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);
-	void readCSV(string filePath, int offset = 0);
 
 	string getState();
 	string getDemSenator();
@@ -76,6 +62,5 @@ public:
 	void setPerDemSen(float f);
 	void setPerRepSen(float f);
 	void setPerOtherSen(float f);
-
 };
 

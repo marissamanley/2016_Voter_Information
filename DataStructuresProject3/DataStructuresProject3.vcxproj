@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataHandler.cpp" />
     <ClCompile Include="DataStructuresProject3.cpp" />
     <ClCompile Include="Districts.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Voter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataHandler.h" />
     <ClInclude Include="Districts.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Random.h" />
