@@ -1,7 +1,7 @@
 #include "DataHandler.h"
 
 unordered_map<string, States> DataHandler::stateMap;
-unordered_map<string, vector<Districts>> DataHandler::districtMap;
+
 
 /*
  * Reads the District_map CSV file to form the stateMap and DistrictMap structures
@@ -44,10 +44,9 @@ void DataHandler::readCSV(string filePath, int offset) {
 		int numDistricts = stoi(numDistrics_);
 
 		States state(stateName, numVoters, numDistricts, demRep, repRep, electoralVotes);
-		stateMap.emplace(stateName, state);
+		
 
-		vector<Districts> districts;
-		for (int i = 0; i < numDistricts; i++) {
+		for (int i = 1; i < numDistricts+1; i++) {
 			string districtNumber_;
 			getline(streamFromAString, districtNumber_, ',');
 			int districtNumber = stoi(districtNumber_);
@@ -67,9 +66,10 @@ void DataHandler::readCSV(string filePath, int offset) {
 			float perRep = stof(percentRep);
 
 			Districts district(districtNumber, numVoters, perDem, perRep, demRep, repRep);
-			districts.push_back(district);
+			state.districtMap.emplace(i, district);
 		}
-		districtMap.emplace(stateName, districts);
+		
+		stateMap.emplace(stateName, state);
 	}
 }
 

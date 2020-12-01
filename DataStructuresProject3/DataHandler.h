@@ -22,6 +22,5 @@ private:
 public:
 	static void initData();
 	static unordered_map<string, States> stateMap;
-	static unordered_map<string, vector<Districts>> districtMap;
 };
 

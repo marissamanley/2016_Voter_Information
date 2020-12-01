@@ -27,6 +27,7 @@ void createVoters();
  *      - lets users see how turnout can affect the electoral college
  *      - would set caps for max turnout at each district
  */
+
 int main()
 {
     DataHandler::initData();
@@ -54,8 +55,8 @@ void printStates()
         cout << "Number of voters: " << iter->second.getVoterCapacity() << endl;
         cout << "Number of electoral votes: " << iter->second.getElectoralVotes() << endl << endl;
 
-        for (int i = 0; i < iter->second.getNumDistricts(); i++) {
-            auto& curDistrict = DataHandler::districtMap[state][i];
+        for (int i = 1; i < iter->second.getNumDistricts()+1; i++) {
+            auto& curDistrict = iter->second.districtMap[i];
             cout << "District Number: " << curDistrict.getDistrict() << endl;
             cout << "Number of voters: " << curDistrict.getVoterCapacity() << endl;
             cout << "Democrat Representative: " << curDistrict.getDemocrat() << endl;
@@ -85,8 +86,8 @@ void createVoters() {
     //loops through every state
     for (iter; iter != DataHandler::stateMap.end(); iter++) {
         //loops through every district within that state
-        for (int district = 0; district < iter->second.getNumDistricts(); district++) {
-            auto curDistrict = DataHandler::districtMap[iter->second.getState()][district];
+        for (int i = 1; i < iter->second.getNumDistricts()+1; i++) {
+            auto& curDistrict = iter->second.districtMap[i];
             //loops through the number of voters within that district
             for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
                 //generates what party the voter is voting for

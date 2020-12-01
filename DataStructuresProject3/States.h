@@ -37,10 +37,9 @@ private:
 	float percentRepSen;
 	float percentOtherSen;
 
-
 public:
 	
-	unordered_map<int, Districts> districtMapTwo;
+	static unordered_map<int, Districts> districtMap;
 
 	States();
 	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);
@@ -63,6 +62,5 @@ public:
 	void setPerDemSen(float f);
 	void setPerRepSen(float f);
 	void setPerOtherSen(float f);
-
 };
 
