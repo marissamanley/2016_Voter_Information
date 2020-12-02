@@ -1,4 +1,4 @@
-#include "main.h"
+/*#include "main.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,11 +8,15 @@
 #include "DataHandler.h"
 using namespace std;
 
+void createVoters();
+
 int main()
 {
+    DataHandler::initData();
+    unordered_map<string, States>& sMap = DataHandler::stateMap;
+    createVoters();
     string presidentDem;
     string presidentRep;
-    unordered_map<string, States>& sMap = DataHandler::stateMap;
 
     //This is gonna be sorted!! oho??
     string states[50] = {"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", 
@@ -128,6 +132,45 @@ int main()
         cout << "\nPlease input the number for a state, or enter 51 for National Election Data. Press 0 to exit program:\n" << endl;
     }
     cout << "Thank you for using 539! Or something snarky idk" << endl;
+
+
+    return 0;
 }
 
-
+void createVoters() {
+    int demCount = 0;
+    int repCount = 0;
+    int otherCount = 0;
+    auto iter = DataHandler::stateMap.begin();
+    //loops through every state
+    for (iter; iter != DataHandler::stateMap.end(); iter++) {
+        //loops through every district within that state
+        for (int i = 1; i < iter->second.getNumDistricts() + 1; i++) {
+            auto& curDistrict = iter->second.districtMap[i];
+            //loops through the number of voters within that district
+            for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
+                //generates what party the voter is voting for
+                Voter::party castVote = Voter::vote(curDistrict.getInitPercentDem(), curDistrict.getInitPercentRep(), curDistrict.getInitPercentOther());
+                //Insert into Splay tree here
+                switch (castVote)
+                {
+                case Voter::DEM:
+                    demCount++;
+                    break;
+                case Voter::REP:
+                    repCount++;
+                    break;
+                case Voter::THIRD:
+                    otherCount++;
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }
+    cout << "Dem Count: " << demCount << endl;
+    cout << "Rep Count: " << repCount << endl;
+    cout << "Third Party Count: " << otherCount << endl;
+}
+*/
