@@ -21,9 +21,12 @@ class Districts
 private:
 	int district;
 	int voterCapacity;
-	float percentDem;
-	float percentRep;
-	float percentOther;
+	int votersDem;
+	int votersRep;
+	int votersOther;
+	float initPercentDem;
+	float initPercentRep;
+	float initPercentOther;
 	string democrat;
 	string republican;
 
@@ -38,14 +41,23 @@ public:
 	int getVoterCapacity();
 	void setVoterCapacity(int voterCapacity);
 
-	float getPercentDem();
-	void setPercentDem(float percentDem);
+	int getVotersDem();
+	void setVotersDem(int v);
 
-	float getPercentRep();
-	void setPercentRep(float percentDem);
+	int getVotersRep();
+	void setVotersRep(int v);
 
-	float getPercentOther();
-	void setPercentOther(float percentOther);
+	int getVotersOther();
+	void setVotersOther(int v);
+
+	float getInitPercentDem();
+	void setInitPercentDem(float percentDem);
+
+	float getInitPercentRep();
+	void setInitPercentRep(float percentRep);
+
+	float getInitPercentOther();
+	void setInitPercentOther(float percentOther);
 
 	string getDemocrat();
 	void setDemocrat(string dem);
