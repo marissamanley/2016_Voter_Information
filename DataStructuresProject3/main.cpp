@@ -10,7 +10,8 @@ using namespace std;
 
 int main()
 {
-
+    string presidentDem;
+    string presidentRep;
     unordered_map<string, States>& sMap = DataHandler::stateMap;
 
     //This is gonna be sorted!! oho??
@@ -22,7 +23,8 @@ int main()
         "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
         
 
-    cout << "Welcome. Please input the number for a state, or enter 51 for National Election Data. Press 0 to exit program:\n" << endl;
+    cout << "Welcome!" << endl;
+    cout << "Please input the number for a state, or enter 51 for National Election Data. Press 0 to exit program : \n" << endl;
     cout << "[1] Alabama     | [11] Hawaii   | [21] Massachusetts | [31] New Mexico     | [41] South Dakota\n\
     [2] Alaska      | [12] Idaho    | [22] Michigan      | [32] New York       | [42] Tennessee\n\
     [3] Arizona     | [13] Illinois | [23] Minnesota     | [33] North Carolina | [43] Texas\n\
@@ -49,46 +51,75 @@ int main()
         }
         else
         {
-            /*States state = sMap[states[input]];
+            States state = sMap[states[input]];
             cout << "State: " << state.getState() << endl;
             cout << "Democrat Senator: " << state.getDemSenator() << endl;
             cout << "Republican Senator: " << state.getRepSenator() << endl;
             cout << "Number of voters: " << state.getVoterCapacity() << endl;
             cout << "Number of electoral votes: " << state.getElectoralVotes() << endl << endl;
-            */
             
-            //cout << "Please input 0 for the National Election data, 1 for the Senatorial Election Data, or 2 to select a District within " << state.getState() << endl;
+            
+            cout << "Please input 0 for the National Election data, 1 for the Senatorial Election Data, or 2 to select a District within " << state.getState() << endl;
             int input2;
             cin >> input2;
             if (input2 == 0)
             {
+                cout << "National Election Data: " << endl;
+                cout << "Candidate Name: Xxxxx Xxxx | Vote Count: " << state.getDemPresVotes() << "   | Vote Percentage: " << state.getPercent(0) << "%" << endl;
+                cout << "Candidate Name: Xxxxx Xxxx | Vote Count: " << state.getRepPresVotes() << "   | Vote Percentage: " << state.getPercent(1) << "%" << endl;
+                cout << "Candidate Name: Other      | Vote Count: " << state.getOtherPresVotes() << " | Vote Percentage: " << state.getPercent(2) << "%" << endl;
                 //National election data based on the state: Name % NumVotes, repeat
             }
 
             if (input2 == 1)
             {
-                //Sentate election based on the state
+                cout << "Senatorial Election Data: " << endl;
+                cout << "Candidate Name: " << state.getDemSenator() << " | Vote Count: " << state.getDemSenVotes() << "   | Vote Percentage: " << state.getPercent(3) << "%" << endl;
+                cout << "Candidate Name: " << state.getRepSenator() << " | Vote Count: " << state.getRepSenVotes() << "   | Vote Percentage: " << state.getPercent(4) << "%" << endl;
+                cout << "Candidate Name: Other      | Vote Count: " << state.getOtherSenVotes() << " | Vote Percentage: " << state.getPercent(5) << "%" << endl;
             }
             
             if (input2 == 2)
             {
                 int distInput = 1;
-                //cout << "There are " << state.getNumDistricts() << " congressional districts in the state of " << state.getState() << ". Input number for a district. Press 0 to exit district search:";
+                cout << "There are " << state.getNumDistricts() << " congressional districts in the state of " << state.getState() << ". Input number for a district. Press 0 to exit district search:";
                 while (distInput != 0)
                 {
                     cin >> distInput;
-                    /*Districts district = state.districtMap[--distInput];
+                    Districts district = state.districtMap[--distInput];
                     cout << "District Number: " << district.getDistrict() << endl;
                     cout << "Number of voters: " << district.getVoterCapacity() << endl;
                     
-                    //Ask for input regarding National, Senate, or District data based on this district
-                        cout << "Democrat Representative: " << district.getDemocrat() << endl;
-                        cout << "Republican Representative: " << district.getRepublican() << endl;
-                        cout << "Dem Percentage: " << district.getPercentDem() * 100 << "%" << endl;
-                        cout << "Rep Percentage: " << district.getPercentRep() * 100 << "%" << endl;
-                        cout << "Third Party Percentage: " << district.getPercentOther() * 100 << "%" << endl << endl;
-                        */
-                    cout << "Input number for a district. Press 0 to exit district search:";
+                    int dataInput = 1;
+                    cout << "Enter a 1 to see National data, 2 to see Senatorial Data, or 3 to see District Data. Press 0 to exit District Data search" << endl;
+                    while (dataInput != 0)
+                    {
+                        cin >> dataInput;
+                        if (dataInput == 1)
+                        {
+                            cout << "National Election Data: " << endl;
+                            cout << "Candidate Name: Xxxxx Xxxx | Vote Count: " << district.getVotersPresDem() << "   | Vote Percentage: " << district.getPercent(0) << "%" << endl;
+                            cout << "Candidate Name: Xxxxx Xxxx | Vote Count: " << district.getVotersPresRep() << "   | Vote Percentage: " << district.getPercent(1) << "%" << endl;
+                            cout << "Candidate Name: Other      | Vote Count: " << district.getVotersPresOther() << " | Vote Percentage: " << district.getPercent(2) << "%" << endl;
+                        }
+                        if (dataInput == 2)
+                        {
+                            cout << "Senatorial Election Data: " << endl;
+                            cout << "Candidate Name: " << state.getDemSenator() << " | Vote Count: " << district.getVotersSenDem() << "   | Vote Percentage: " << district.getPercent(3) << "%" << endl;
+                            cout << "Candidate Name: " << state.getRepSenator() << " | Vote Count: " << district.getVotersSenRep() << "   | Vote Percentage: " << district.getPercent(4) << "%" << endl;
+                            cout << "Candidate Name: Other      | Vote Count: " << district.getVotersSenOther() << " | Vote Percentage: " << district.getPercent(5) << "%" << endl;
+                        }
+                        if (dataInput == 3)
+                        {
+                            cout << "Representative Election Data: " << endl;
+                            cout << "Candidate Name: " << district.getDemocrat() << " | Vote Count: " << district.getVotersDem() << "   | Vote Percentage: " << district.getPercent(6) << "%" << endl;
+                            cout << "Candidate Name: " << district.getRepublican() << " | Vote Count: " << district.getVotersRep() << "   | Vote Percentage: " << district.getPercent(7) << "%" << endl;
+                            cout << "Candidate Name: Other      | Vote Count: " << district.getVotersOther() << " | Vote Percentage: " << district.getPercent(8) << "%" << endl;
+                        }
+                        cout << "Enter a 1 to see National data, 2 to see Senatorial Data, or 3 to see District Data. Press 0 to exit District Data search" << endl;
+                    }
+                        
+                    cout << "Input number for a district. Press 0 to exit District search:";
                 }
             }
         }
