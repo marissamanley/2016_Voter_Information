@@ -5,13 +5,13 @@
 #include "States.h"
 #include "Districts.h"
 #include "Voter.h"
-//#include "DataHandler.h"
+#include "DataHandler.h"
 using namespace std;
 
 int main()
 {
 
-    //unordered_map<string, States>& sMap = DataHandler::stateMap;
+    unordered_map<string, States>& sMap = DataHandler::stateMap;
 
     //This is gonna be sorted!! oho??
     string states[50] = {"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", 
