@@ -1,13 +1,19 @@
 #include "Districts.h"
 
-Districts::Districts(int district, int voterCapacity, float percentDem, float percentRep, string democratRep, string republicanRep) {
+Districts::Districts(int district, int voterCapacity, float percentDem, float percentRep, float percentDemSen, float percentRepSen, float percentDemNat, float percentRepNat, string democratRep, string republicanRep) {
 	this->district = district;
 	this->voterCapacity = voterCapacity;
 	this->initPercentDem = percentDem;
 	this->initPercentRep = percentRep;
+	this->initPercentDemSen = percentDemSen;
+	this->initPercentRepSen = percentRepSen;
+	this->initPercentDemNat = percentDemNat;
+	this->initPercentRepNat = percentRepNat;
 	this->democrat = democratRep;
 	this->republican = republicanRep;
 	this->initPercentOther = 1 - (percentDem + percentRep);
+	this->initPercentOtherSen = 1 - (percentDemSen + percentRepSen);
+	this->initPercentOtherNat = 1 - (percentDemNat + percentRepNat);
 }
 
 int Districts::getDistrict() {

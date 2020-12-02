@@ -167,6 +167,9 @@ void createVoters() {
                     break;
                 }
             }
+            curDistrict.setVotersDem(demCount);
+            curDistrict.setVotersRep(repCount);
+            curDistrict.setVotersOther(otherCount);
         }
     }
     //cout << "Dem Count: " << demCount << endl;

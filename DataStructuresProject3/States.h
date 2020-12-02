@@ -25,23 +25,17 @@ class States
 {
 private:
 	string state;
-	int voterCapacity;
-	int numDistricts;
+	int voterCapacity = 0;
+	int numDistricts = 0;
 	string demSenator;
 	string repSenator;
-	int electoralVotes;
-	int democratPresVotes;
-	int republicanPresVotes;
-	int otherPresVotes;
-	int democratSenVotes;
-	int republicanSenVotes;
-	int otherSenVotes;
-	/*float percentDemPres;
-	float percentRepPres;
-	float percentOtherPres;
-	float percentDemSen;
-	float percentRepSen;
-	float percentOtherSen;*/
+	int electoralVotes = 0;
+	int democratPresVotes = 0;
+	int republicanPresVotes = 0;
+	int otherPresVotes = 0;
+	int democratSenVotes = 0;
+	int republicanSenVotes = 0;
+	int otherSenVotes = 0;
 
 public:
 	
@@ -62,12 +56,12 @@ public:
 	int getDemSenVotes();
 	int getRepSenVotes();
 	int getOtherSenVotes();
-	void setDemPresVotes(int i);
-	void setRepPresVotes(int i);
-	void setOtherPresVotes(int i);
-	void setDemSenVotes(int i);
-	void setRepSenVotes(int i);
-	void setOtherSenVotes(int i);
+	void addDemPresVotes(int i);
+	void addRepPresVotes(int i);
+	void addOtherPresVotes(int i);
+	void addDemSenVotes(int i);
+	void addRepSenVotes(int i);
+	void addOtherSenVotes(int i);
 	float getPercent(int num);
 };
 

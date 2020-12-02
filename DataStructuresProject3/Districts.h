@@ -20,25 +20,31 @@ class Districts
 {
 private:
 	int district;
-	int voterCapacity;
-	int votersDem;
-	int votersRep;
-	int votersOther;
-	int votersSenDem;
-	int votersSenRep;
-	int votersSenOther;
-	int votersPresDem;
-	int votersPresRep;
-	int votersPresOther;
-	float initPercentDem;
-	float initPercentRep;
-	float initPercentOther;
+	int voterCapacity = 0;
+	int votersDem = 0;
+	int votersRep = 0;
+	int votersOther = 0;
+	int votersSenDem = 0;
+	int votersSenRep = 0;
+	int votersSenOther = 0;
+	int votersPresDem = 0;
+	int votersPresRep = 0;
+	int votersPresOther = 0;
+	float initPercentDem = 0.0;
+	float initPercentRep = 0.0;
+	float initPercentOther = 0.0;
+	float initPercentDemNat = 0.0;
+	float initPercentRepNat = 0.0;
+	float initPercentOtherNat= 0.0;
+	float initPercentDemSen = 0.0;
+	float initPercentRepSen = 0.0;
+	float initPercentOtherSen = 0.0;
 	string democrat;
 	string republican;
 
 public:
 	Districts() {};
-	Districts(int district, int voterCapacity, float percentDem, float percentRep, string democratRep, string republicanRep);
+	Districts(int district, int voterCapacity, float percentDem, float percentRep, float percentDemSen, float percentRepSen, float percentDemNat, float percentRepNat, string democratRep, string republicanRep);
 
 	//set functions there for potential modularity 
 	int getDistrict();

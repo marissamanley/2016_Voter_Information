@@ -47,6 +47,22 @@ void DataHandler::readCSV(string filePath, int offset) {
 		
 
 		for (int i = 1; i < numDistricts+1; i++) {
+			string percentDemNat;
+			getline(streamFromAString, percentDemNat, ',');
+			float perDemNat = stof(percentDemNat);
+
+			string percentRepNat;
+			getline(streamFromAString, percentRepNat, ',');
+			float perRepNat = stof(percentRepNat);
+
+			string percentDemSen;
+			getline(streamFromAString, percentDemSen, ',');
+			float perDemSen = stof(percentDemSen);
+
+			string percentRepSen;
+			getline(streamFromAString, percentRepSen, ',');
+			float perRepSen = stof(percentRepSen);
+			
 			string districtNumber_;
 			getline(streamFromAString, districtNumber_, ',');
 			int districtNumber = stoi(districtNumber_);
@@ -65,7 +81,7 @@ void DataHandler::readCSV(string filePath, int offset) {
 			getline(streamFromAString, percentRep, ',');
 			float perRep = stof(percentRep);
 
-			Districts district(districtNumber, numVoters, perDem, perRep, demRep, repRep);
+			Districts district(districtNumber, numVoters, perDem, perRep, perDemSen, perRepSen, perDemNat, perRepNat, demRep, repRep);
 			state.districtMap.emplace(i, district);
 		}
 		
