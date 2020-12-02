@@ -65,34 +65,34 @@ int States::getOtherSenVotes()
 	return otherSenVotes;
 }
 
-void States::setDemPresVotes(int i)
+void States::addDemPresVotes(int i)
 {
-	democratPresVotes = i;
+	democratPresVotes += i;
 }
 
-void States::setRepPresVotes(int i)
+void States::addRepPresVotes(int i)
 {
-	republicanPresVotes = i;
+	republicanPresVotes += i;
 }
 
-void States::setOtherPresVotes(int i)
+void States::addOtherPresVotes(int i)
 {
-	otherPresVotes = i;
+	otherPresVotes += i;
 }
 
-void States::setDemSenVotes(int i)
+void States::addDemSenVotes(int i)
 {
-	democratSenVotes = i;
+	democratSenVotes += i;
 }
 
-void States::setRepSenVotes(int i)
+void States::addRepSenVotes(int i)
 {
-	republicanSenVotes = i;
+	republicanSenVotes += i;
 }
 
-void States::setOtherSenVotes(int i)
+void States::addOtherSenVotes(int i)
 {
-	otherSenVotes = i;
+	otherSenVotes += i;
 }
 
 float States::getPercent(int num)
