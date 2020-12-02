@@ -24,6 +24,9 @@ private:
 	int votersDem;
 	int votersRep;
 	int votersOther;
+	int votersSenDem;
+	int votersSenRep;
+	int votersSenOther;
 	int votersPresDem;
 	int votersPresRep;
 	int votersPresOther;
@@ -52,6 +55,15 @@ public:
 
 	int getVotersOther();
 	void setVotersOther(int v);
+
+	int getVotersSenDem();
+	void setVotersSenDem(int v);
+
+	int getVotersSenRep();
+	void setVotersSenRep(int v);
+
+	int getVotersSenOther();
+	void setVotersSenOther(int v);
 
 	int getVotersPresDem();
 	void setVotersPresDem(int v);
