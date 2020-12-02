@@ -33,18 +33,12 @@ private:
 	float initPercentDem = 0.0;
 	float initPercentRep = 0.0;
 	float initPercentOther = 0.0;
-	float initPercentDemNat = 0.0;
-	float initPercentRepNat = 0.0;
-	float initPercentOtherNat= 0.0;
-	float initPercentDemSen = 0.0;
-	float initPercentRepSen = 0.0;
-	float initPercentOtherSen = 0.0;
 	string democrat;
 	string republican;
 
 public:
 	Districts() {};
-	Districts(int district, int voterCapacity, float percentDem, float percentRep, float percentDemSen, float percentRepSen, float percentDemNat, float percentRepNat, string democratRep, string republicanRep);
+	Districts(int district, int voterCapacity, float percentDem, float percentRep, string democratRep, string republicanRep);
 
 	//set functions there for potential modularity 
 	int getDistrict();
