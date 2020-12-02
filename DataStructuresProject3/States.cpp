@@ -40,65 +40,120 @@ int States::getElectoralVotes() {
 	return this->electoralVotes;
 }
 
-float States::getPerDemPres()
+int States::getDemPresVotes()
 {
-	return percentDemPres;
+	return democratPresVotes;
+}
+int States::getRepPresVotes()
+{
+	return republicanPresVotes;
+}
+int States::getOtherPresVotes()
+{
+	return otherPresVotes;
+}
+int States::getDemSenVotes()
+{
+	return democratSenVotes;
+}
+int States::getRepSenVotes()
+{
+	return republicanSenVotes;
+}
+int States::getOtherSenVotes()
+{
+	return otherSenVotes;
 }
 
-float States::getPerRepPres()
+void States::setDemPresVotes(int i)
 {
-	return percentRepPres;
+	democratPresVotes = i;
 }
 
-float States::getPerOtherPres()
+void States::setRepPresVotes(int i)
 {
-	return percentOtherPres;
+	republicanPresVotes = i;
 }
 
-float States::getPerDemSen()
+void States::setOtherPresVotes(int i)
 {
-	return percentDemSen;
+	otherPresVotes = i;
 }
 
-float States::getPerRepSen()
+void States::setDemSenVotes(int i)
 {
-	return percentRepSen;
+	democratSenVotes = i;
 }
 
-float States::getPerOtherSen()
+void States::setRepSenVotes(int i)
 {
-	return percentOtherSen;
+	republicanSenVotes = i;
 }
 
-void States::setPerDemPres(float f)
+void States::setOtherSenVotes(int i)
 {
-	percentDemPres = f;
+	otherSenVotes = i;
 }
 
-void States::setPerRepPres(float f)
-{
-	percentRepPres = f;
-}
-
-void States::setPerOtherPres(float f)
-{
-	percentOtherPres = f;
-}
-
-void States::setPerDemSen(float f)
-{
-	percentDemSen = f;
-}
-
-void States::setPerRepSen(float f)
-{
-	percentRepSen = f;
-}
-
-void States::setPerOtherSen(float f)
-{
-	percentOtherSen = f;
-}
+//float States::getPerDemPres()
+//{
+//	return percentDemPres;
+//}
+//
+//float States::getPerRepPres()
+//{
+//	return percentRepPres;
+//}
+//
+//float States::getPerOtherPres()
+//{
+//	return percentOtherPres;
+//}
+//
+//float States::getPerDemSen()
+//{
+//	return percentDemSen;
+//}
+//
+//float States::getPerRepSen()
+//{
+//	return percentRepSen;
+//}
+//
+//float States::getPerOtherSen()
+//{
+//	return percentOtherSen;
+//}
+//
+//void States::setPerDemPres(float f)
+//{
+//	percentDemPres = f;
+//}
+//
+//void States::setPerRepPres(float f)
+//{
+//	percentRepPres = f;
+//}
+//
+//void States::setPerOtherPres(float f)
+//{
+//	percentOtherPres = f;
+//}
+//
+//void States::setPerDemSen(float f)
+//{
+//	percentDemSen = f;
+//}
+//
+//void States::setPerRepSen(float f)
+//{
+//	percentRepSen = f;
+//}
+//
+//void States::setPerOtherSen(float f)
+//{
+//	percentOtherSen = f;
+//}
 
 
 
