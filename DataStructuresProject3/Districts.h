@@ -24,6 +24,9 @@ private:
 	int votersDem;
 	int votersRep;
 	int votersOther;
+	int votersPresDem;
+	int votersPresRep;
+	int votersPresOther;
 	float initPercentDem;
 	float initPercentRep;
 	float initPercentOther;
@@ -50,6 +53,15 @@ public:
 	int getVotersOther();
 	void setVotersOther(int v);
 
+	int getVotersPresDem();
+	void setVotersPresDem(int v);
+
+	int getVotersPresRep();
+	void setVotersPresRep(int v);
+
+	int getVotersPresOther();
+	void setVotersPresOther(int v);
+
 	float getInitPercentDem();
 	void setInitPercentDem(float percentDem);
 
@@ -64,5 +76,7 @@ public:
 
 	string getRepublican();
 	void setRepublican(string rep);
+
+	float getPercent(int num);
 };
 

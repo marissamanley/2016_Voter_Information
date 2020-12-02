@@ -68,17 +68,6 @@ public:
 	void setDemSenVotes(int i);
 	void setRepSenVotes(int i);
 	void setOtherSenVotes(int i);
-	/*float getPerDemPres();
-	float getPerRepPres();
-	float getPerOtherPres();
-	float getPerDemSen();
-	float getPerRepSen();
-	float getPerOtherSen();
-	void setPerDemPres(float f);
-	void setPerRepPres(float f);
-	void setPerOtherPres(float f);
-	void setPerDemSen(float f);
-	void setPerRepSen(float f);
-	void setPerOtherSen(float f);*/
+	float getPercent(int num);
 };
 

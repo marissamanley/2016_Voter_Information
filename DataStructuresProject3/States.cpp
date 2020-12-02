@@ -95,6 +95,34 @@ void States::setOtherSenVotes(int i)
 	otherSenVotes = i;
 }
 
+float States::getPercent(int num)
+{
+	if (num == 0)
+	{
+		return (float)democratPresVotes / (float)voterCapacity;
+	}
+	else if (num == 1)
+	{
+		return (float)republicanPresVotes / (float)voterCapacity;
+	}
+	else if (num == 2)
+	{
+		return (float)otherPresVotes / (float)voterCapacity;
+	}
+	else if (num == 3)
+	{
+		return (float)democratSenVotes / (float)voterCapacity;
+	}
+	else if (num == 4)
+	{
+		return (float)republicanSenVotes / (float)voterCapacity;
+	}
+	else if (num == 5)
+	{
+		return (float)otherSenVotes / (float)voterCapacity;
+	}
+}
+
 //float States::getPerDemPres()
 //{
 //	return percentDemPres;

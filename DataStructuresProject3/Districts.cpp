@@ -55,6 +55,36 @@ void Districts::setVotersOther(int v)
 	this->votersOther = v;
 }
 
+int Districts::getVotersPresDem()
+{
+	return votersPresDem;
+}
+
+void Districts::setVotersPresDem(int v)
+{
+	votersPresDem = v;
+}
+
+int Districts::getVotersPresRep()
+{
+	return votersPresRep;
+}
+
+void Districts::setVotersPresRep(int v)
+{
+	votersPresRep = v;
+}
+
+int Districts::getVotersPresOther()
+{
+	return votersPresOther;
+}
+
+void Districts::setVotersPresOther(int v)
+{
+	votersPresOther = v;
+}
+
 float Districts::getInitPercentDem()
 {
 	return initPercentDem;
@@ -101,4 +131,32 @@ string Districts::getRepublican() {
 void Districts::setRepublican(string rep)
 {
 	republican = rep;
+}
+
+float Districts::getPercent(int num)
+{
+	if (num == 0)
+	{
+		return (float)votersPresDem / (float)voterCapacity;
+	}
+	else if (num == 1)
+	{
+		return (float)votersPresRep / (float)voterCapacity;
+	}
+	else if (num == 2)
+	{
+		return (float)votersPresOther / (float)voterCapacity;
+	}
+	else if (num == 3)
+	{
+		return (float)votersDem / (float)voterCapacity;
+	}
+	else if (num == 4)
+	{
+		return (float)votersRep / (float)voterCapacity;
+	}
+	else if (num == 5)
+	{
+		return (float)votersOther / (float)voterCapacity;
+	}
 }
