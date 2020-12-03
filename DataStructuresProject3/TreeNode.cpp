@@ -4,14 +4,14 @@ TreeNode::TreeNode()
 {
 }
 
-TreeNode::TreeNode(States s)
+TreeNode::TreeNode(States *s)
 {
-	state = s;
+	state = *s;
 }
 
-TreeNode::TreeNode(States s, TreeNode* left, TreeNode* right)
+TreeNode::TreeNode(States* s, TreeNode* left, TreeNode* right)
 {
-	state = s;
+	state = *s;
 	this->left = left;
 	this->right = right;
 }
