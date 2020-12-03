@@ -15,6 +15,22 @@ States::States(string state, int voterCapacity, int numDistricts, string demSena
 	this->electoralVotes = electoralVotes;
 }
 
+States::States(const States& s)
+{
+	this->state = s.state;
+	this->voterCapacity = s.voterCapacity;
+	this->numDistricts = s.numDistricts;
+	this->demSenator = s.demSenator;
+	this->repSenator = s.repSenator;
+	this->electoralVotes = s.electoralVotes;
+	this->democratPresVotes = s.democratPresVotes;
+	this->republicanPresVotes = s.republicanPresVotes;
+	this->otherPresVotes = s.otherPresVotes;
+	this->democratSenVotes = s.democratSenVotes;
+	this->republicanSenVotes = s.republicanSenVotes;
+	this->otherSenVotes = s.otherSenVotes;
+}
+
 //A bunch of get and set functions for variables in this class
 string States::getState() {
 	return this->state;

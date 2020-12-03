@@ -43,7 +43,7 @@ public:
 
 	States();
 	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);
-
+	States(const States& s);
 	string getState();
 	string getDemSenator();
 	string getRepSenator();
