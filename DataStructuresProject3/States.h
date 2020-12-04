@@ -63,5 +63,6 @@ public:
 	void addRepSenVotes(int i);
 	void addOtherSenVotes(int i);
 	float getPercent(int num);
+	void districtInfo();
 };
 
