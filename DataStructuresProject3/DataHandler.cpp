@@ -1,8 +1,7 @@
 #include "DataHandler.h"
 
 unordered_map<string, States> DataHandler::stateMap;
-
-
+Tree* DataHandler::stateTree = new Tree();
 /*
  * Reads the District_map CSV file to form the stateMap and DistrictMap structures
  * Reads in voter information for each district in each state
@@ -44,7 +43,7 @@ void DataHandler::readCSV(string filePath, int offset) {
 		int numDistricts = stoi(numDistrics_);
 
 		States state(stateName, numVoters, numDistricts, demRep, repRep, electoralVotes);
-		
+		DataHandler::stateTree->root = DataHandler::stateTree->insert(DataHandler::stateTree->root, &state);
 
 		for (int i = 1; i < numDistricts+1; i++) {
 			
