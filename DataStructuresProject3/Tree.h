@@ -22,5 +22,7 @@ public:
 	TreeNode* rightRotate(TreeNode* root);
 	TreeNode* leftRightRotate(TreeNode* root);
 	TreeNode* rightLeftRotate(TreeNode* root);
+   
+}
 };
 

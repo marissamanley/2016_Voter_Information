@@ -158,7 +158,7 @@ TreeNode* Tree::search(TreeNode* root, string statename)
 
 }
 
-void Tree::printInorder(TreeNode* root, std::string& s)
+void Tree::printInorder(TreeNode* root, std::string& s) //This might be used
 {
 	//base condition
 	if (root == nullptr)
@@ -281,3 +281,4 @@ TreeNode* Tree::rightLeftRotate(TreeNode* root)
 	root->right = rightRotate(root->right);
 	return leftRotate(root);
 }
+
