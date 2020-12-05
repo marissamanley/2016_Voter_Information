@@ -47,6 +47,7 @@ public:
 	string getState();
 	string getDemSenator();
 	string getRepSenator();
+
 	int getVoterCapacity();
 	int getNumDistricts();
 	int getElectoralVotes();
@@ -56,12 +57,17 @@ public:
 	int getDemSenVotes();
 	int getRepSenVotes();
 	int getOtherSenVotes();
-	void addDemPresVotes(int i);
-	void addRepPresVotes(int i);
-	void addOtherPresVotes(int i);
-	void addDemSenVotes(int i);
-	void addRepSenVotes(int i);
-	void addOtherSenVotes(int i);
+
+	void setDemPresVotes(int v);
+	void setRepPresVotes(int v);
+	void setOtherPresVotes(int v);
+	void setDemSenVotes(int v);
+	void setRepSenVotes(int v);
+	void setOtherSenVotes(int v);
+	void addDemVotes(int voteCount, int districtNumber);
+	void addRepVotes(int voteCount, int districtNumber);
+	void addOtherVotes(int voteCount, int districtNumber);
+
 	float getPercent(int num);
 	void districtInfo();
 };

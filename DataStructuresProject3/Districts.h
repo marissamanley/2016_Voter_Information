@@ -74,6 +74,10 @@ public:
 	int getVotersPresOther();
 	void setVotersPresOther(int v);
 
+	void addVotersDem(int voterCount);
+	void addVotersRep(int voterCount);
+	void addVotersOther(int voterCount);
+
 	float getInitPercentDem();
 	void setInitPercentDem(float percentDem);
 

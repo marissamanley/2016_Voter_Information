@@ -10,7 +10,7 @@
 #include "Tree.h"
 using namespace std;
 
-void createVoters();
+
 int* nationalInfoMap(unordered_map<string, States>& sMap);
 void senatorialInfoAVL(TreeNode* root);
 void nationalInfoAVL(TreeNode* root, int* info);
@@ -21,7 +21,6 @@ int main()
     unordered_map<string, States>& sMap = DataHandler::stateMap;
     Tree* sTree = DataHandler::stateTree;
 
-    createVoters();
     string presidentDem;
     string presidentRep;
 
@@ -236,42 +235,7 @@ int main()
     return 0;
 }
 
-void createVoters() {
-    int demCount = 0;
-    int repCount = 0;
-    int otherCount = 0;
-    auto iter = DataHandler::stateMap.begin();
-    //loops through every state
-    for (iter; iter != DataHandler::stateMap.end(); iter++) {
-        //loops through every district within that state
-        for (int i = 1; i < iter->second.getNumDistricts() + 1; i++) {
-            auto& curDistrict = iter->second.districtMap[i];
-            //loops through the number of voters within that district
-            for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
-                //generates what party the voter is voting for
-                Voter::party castVote = Voter::vote(curDistrict.getInitPercentDem(), curDistrict.getInitPercentRep(), curDistrict.getInitPercentOther());
-                //Insert into Splay tree here
-                switch (castVote)
-                {
-                case Voter::DEM:
-                    demCount++;
-                    break;
-                case Voter::REP:
-                    repCount++;
-                    break;
-                case Voter::THIRD:
-                    otherCount++;
-                    break;
-                default:
-                    break;
-                }
-            }
-            curDistrict.setVotersDem(demCount);
-            curDistrict.setVotersRep(repCount);
-            curDistrict.setVotersOther(otherCount);
-        }
-    }
-}
+
 
 int* nationalInfoMap(unordered_map<string, States>& sMap)
 {

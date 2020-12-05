@@ -81,35 +81,58 @@ int States::getOtherSenVotes()
 	return otherSenVotes;
 }
 
-void States::addDemPresVotes(int i)
+void States::setDemPresVotes(int v)
 {
-	democratPresVotes += i;
+	this->democratPresVotes += v;
 }
 
-void States::addRepPresVotes(int i)
+void States::setRepPresVotes(int v)
 {
-	republicanPresVotes += i;
+	this->republicanPresVotes += v;
 }
 
-void States::addOtherPresVotes(int i)
+void States::setOtherPresVotes(int v)
 {
-	otherPresVotes += i;
+	this->otherPresVotes += v;
 }
 
-void States::addDemSenVotes(int i)
+void States::setDemSenVotes(int v)
 {
-	democratSenVotes += i;
+	this->democratSenVotes += v;
 }
 
-void States::addRepSenVotes(int i)
+void States::setRepSenVotes(int v)
 {
-	republicanSenVotes += i;
+	this->republicanSenVotes += v;
 }
 
-void States::addOtherSenVotes(int i)
+void States::setOtherSenVotes(int v)
 {
-	otherSenVotes += i;
+	this->otherSenVotes += v;
 }
+
+void States::addDemVotes(int voteCount, int districtNumber)
+{
+	setDemPresVotes(voteCount);
+	setDemSenVotes(voteCount);
+	this->districtMap[districtNumber].addVotersDem(voteCount);
+}
+
+void States::addRepVotes(int voteCount, int districtNumber)
+{
+	setRepPresVotes(voteCount);
+	setRepSenVotes(voteCount);
+	this->districtMap[districtNumber].addVotersRep(voteCount);
+}
+
+void States::addOtherVotes(int voteCount, int districtNumber)
+{
+	setOtherPresVotes(voteCount);
+	setOtherSenVotes(voteCount);
+	this->districtMap[districtNumber].addVotersOther(voteCount);
+}
+
+
 
 float States::getPercent(int num)
 {

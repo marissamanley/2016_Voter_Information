@@ -82,7 +82,8 @@ void DataHandler::createVoters() {
 	//loops through every state
 	for (iter; iter != DataHandler::stateMap.end(); iter++) {
 		//loops through every district within that state
-		for (int i = 1; i < iter->second.getNumDistricts()+1; i++) {
+		auto& curState = iter->second;
+		for (int i = 1; i < iter->second.getNumDistricts() + 1; i++) {
 			auto& curDistrict = iter->second.districtMap[i];
 			//loops through the number of voters within that district
 			for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
@@ -104,13 +105,17 @@ void DataHandler::createVoters() {
 					break;
 				}
 			}
+			curState.addDemVotes(demCount, i);
+			curState.addRepVotes(repCount, i);
+			curState.addOtherVotes(otherCount, i);
+			//curDistrict.setVotersDem(demCount);
+			//curDistrict.setVotersRep(repCount);
+			//curDistrict.setVotersOther(otherCount);
 		}
 	}
-	cout << "Dem Count: " << demCount << endl;
-	cout << "Rep Count: " << repCount << endl;
-	cout << "Third Party Count: " << otherCount << endl;
 }
 
 void DataHandler::initData() {
 	readCSV("District_map.csv");
+	createVoters();
 }

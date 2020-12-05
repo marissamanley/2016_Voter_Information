@@ -115,6 +115,28 @@ void Districts::setVotersPresOther(int v)
 	votersPresOther = v;
 }
 
+void Districts::addVotersDem(int voterCount)
+{
+	setVotersDem(voterCount);
+	setVotersPresDem(voterCount);
+	setVotersSenDem(voterCount);
+}
+
+void Districts::addVotersRep(int voterCount)
+{
+	setVotersRep(voterCount);
+	setVotersPresRep(voterCount);
+	setVotersSenRep(voterCount);
+}
+
+void Districts::addVotersOther(int voterCount)
+{
+	setVotersOther(voterCount);
+	setVotersPresOther(voterCount);
+	setVotersSenOther(voterCount);
+}
+
+
 float Districts::getInitPercentDem()
 {
 	return initPercentDem;
