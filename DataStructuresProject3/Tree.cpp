@@ -26,6 +26,7 @@ TreeNode* Tree::insert(TreeNode* root, States *s)
 		TreeNode* node = new TreeNode(s);
 		return node;
 	}
+
 	if (compareStateNames(s->getState(),root->state.getState()) == -1)
 	{
 		root->left = insert(root->left, s);
@@ -78,7 +79,7 @@ TreeNode* Tree::remove(TreeNode* root, string statename)
 
 	//These functions create a balanced tree
 	store(storedTree, root);
-	return makeTree(storedTree, 0, storedTree.size() - 1);
+	return makeTree(storedTree, 0, (int)storedTree.size() - 1);
 
 }
 
@@ -135,27 +136,23 @@ TreeNode* Tree::removeStuff(TreeNode* root, string statename)
 
 TreeNode* Tree::search(TreeNode* root, string statename)
 {
-	//base condition that prints unsuccessful if ID not found
-	if (root == nullptr)
+	if (root != nullptr)
 	{
-		std::cout << "unsuccessful" << std::endl;
-		return root;
+		if (compareStateNames(statename, root->state.getState()) == 0)
+		{
+			return root;
+		}
+		if (compareStateNames(statename, root->state.getState()) == -1)
+		{
+			root = search(root->left, statename);
+			return root;
+		}
+		else
+		{
+			root = search(root->right, statename);
+			return root;
+		}
 	}
-
-	//compares IDs and searches recursively if not matching
-	if (compareStateNames(statename, root->state.getState()) == 0)
-	{
-		return root;
-	}
-	else if (compareStateNames(statename, root->state.getState()) == -1)
-	{
-		search(root->left, statename);
-	}
-	else
-	{
-		search(root->right, statename);
-	}
-
 }
 
 void Tree::printInorder(TreeNode* root, std::string& s) //This might be used

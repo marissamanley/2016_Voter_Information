@@ -1,6 +1,8 @@
 #pragma once
 #include "Districts.h"
 #include "States.h"
+#include "Tree.h"
+#include "TreeNode.h"
 
 /*
  * The purpose of this class is to initialize the data from the CSV file and store it within unordered_maps
@@ -22,5 +24,6 @@ private:
 public:
 	static void initData();
 	static unordered_map<string, States> stateMap;
+    static Tree* stateTree;
 };
 
