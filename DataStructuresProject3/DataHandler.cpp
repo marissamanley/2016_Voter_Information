@@ -73,6 +73,44 @@ void DataHandler::readCSV(string filePath, int offset) {
 	}
 }
 
+
+void DataHandler::createVoters() {
+	int demCount = 0;
+	int repCount = 0;
+	int otherCount = 0;
+	auto iter = DataHandler::stateMap.begin();
+	//loops through every state
+	for (iter; iter != DataHandler::stateMap.end(); iter++) {
+		//loops through every district within that state
+		for (int i = 1; i < iter->second.getNumDistricts()+1; i++) {
+			auto& curDistrict = iter->second.districtMap[i];
+			//loops through the number of voters within that district
+			for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
+				//generates what party the voter is voting for
+				Voter::party castVote = Voter::vote(curDistrict.getInitPercentDem(), curDistrict.getInitPercentRep(), curDistrict.getInitPercentOther());
+				//Insert into Splay tree here
+				switch (castVote)
+				{
+				case Voter::DEM:
+					demCount++;
+					break;
+				case Voter::REP:
+					repCount++;
+					break;
+				case Voter::THIRD:
+					otherCount++;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+	cout << "Dem Count: " << demCount << endl;
+	cout << "Rep Count: " << repCount << endl;
+	cout << "Third Party Count: " << otherCount << endl;
+}
+
 void DataHandler::initData() {
 	readCSV("District_map.csv");
 }

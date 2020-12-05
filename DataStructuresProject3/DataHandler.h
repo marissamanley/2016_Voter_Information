@@ -3,6 +3,7 @@
 #include "States.h"
 #include "Tree.h"
 #include "TreeNode.h"
+#include "Voter.h"
 
 /*
  * The purpose of this class is to initialize the data from the CSV file and store it within unordered_maps
@@ -21,6 +22,7 @@ class DataHandler
 {
 private:
 	static void readCSV(string filePath, int offset = 0);
+	static void createVoters();
 public:
 	static void initData();
 	static unordered_map<string, States> stateMap;
