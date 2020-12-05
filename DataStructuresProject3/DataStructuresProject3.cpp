@@ -7,10 +7,13 @@
 #include "Voter.h"
 #include "DataHandler.h"
 #include "TreeNode.h"
+#include "Tree.h"
 using namespace std;
 
 void createVoters();
 int* nationalInfoMap(unordered_map<string, States>& sMap);
+void senatorialInfoAVL(TreeNode* root);
+void nationalInfoAVL(TreeNode* root, int* info);
 
 int main()
 {
@@ -73,7 +76,7 @@ int main()
             }
             else if (sortInput == 2)
             {
-                //senatorialDataAVL(TreeNode* root);
+                //senatorialInfoAVL(root);
             }
         }
         else
@@ -83,7 +86,7 @@ int main()
             if(sortInput == 0)
                 state = sMap[states[input]];
             else
-                //AVL access search function and TreeNode* root
+                //Tree::search(root, state.getState());
 
             cout << "State: " << state.getState() << endl;
             cout << "Democrat Senator: " << state.getDemSenator() << endl;
@@ -240,7 +243,7 @@ int* nationalInfoMap(unordered_map<string, States>& sMap)
 
 }
 
-/*void nationalInfoAVL(TreeNode* root, int[] info)
+void nationalInfoAVL(TreeNode* root, int* info)
 {
 	if (root == nullptr)
 		return;
@@ -259,14 +262,14 @@ void senatorialInfoAVL(TreeNode* root)
     if (root == nullptr)
         return;
 
-    senatorialInfoAVL(root->left, info);
+    senatorialInfoAVL(root->left);
 
     cout << "\nSenatorial Election Data for " << root->state.getState() << ": " << endl;
     cout << "Candidate Name: " << root->state.getDemSenator() << " | Vote Count: " << root->state.getDemSenVotes() << "   | Vote Percentage: " << root->state.getPercent(3) << "%" << endl;
     cout << "Candidate Name: " << root->state.getRepSenator() << " | Vote Count: " << root->state.getRepSenVotes() << "   | Vote Percentage: " << root->state.getPercent(4) << "%" << endl;
     cout << "Candidate Name: Other      | Vote Count: " << root->state.getOtherSenVotes() << " | Vote Percentage: " << root->state.getPercent(5) << "%" << endl;
 
-    senatorialInfoAVL(root->right, info);
+    senatorialInfoAVL(root->right);
 }
 
 
