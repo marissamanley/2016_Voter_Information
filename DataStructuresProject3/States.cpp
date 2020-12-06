@@ -1,6 +1,5 @@
 #include "States.h"
 
-unordered_map<int, Districts> States::districtMap;
 
 //created so you can instantiate a states object to call the readCSV function
 //Might move readCSV and maps elsewhere for modularity and separation of tasks
@@ -81,134 +80,107 @@ int States::getOtherSenVotes()
 	return otherSenVotes;
 }
 
-void States::addDemPresVotes(int i)
+void States::setDemPresVotes(int v)
 {
-	democratPresVotes += i;
+	this->democratPresVotes += v;
 }
 
-void States::addRepPresVotes(int i)
+void States::setRepPresVotes(int v)
 {
-	republicanPresVotes += i;
+	this->republicanPresVotes += v;
 }
 
-void States::addOtherPresVotes(int i)
+void States::setOtherPresVotes(int v)
 {
-	otherPresVotes += i;
+	this->otherPresVotes += v;
 }
 
-void States::addDemSenVotes(int i)
+void States::setDemSenVotes(int v)
 {
-	democratSenVotes += i;
+	this->democratSenVotes += v;
 }
 
-void States::addRepSenVotes(int i)
+void States::setRepSenVotes(int v)
 {
-	republicanSenVotes += i;
+	this->republicanSenVotes += v;
 }
 
-void States::addOtherSenVotes(int i)
+void States::setOtherSenVotes(int v)
 {
-	otherSenVotes += i;
+	this->otherSenVotes += v;
 }
+
+void States::addDemVotes(int voteCount, int districtNumber)
+{
+	setDemPresVotes(voteCount);
+	setDemSenVotes(voteCount);
+	this->districtMap[districtNumber].addVotersDem(voteCount);
+}
+
+void States::addRepVotes(int voteCount, int districtNumber)
+{
+	setRepPresVotes(voteCount);
+	setRepSenVotes(voteCount);
+	this->districtMap[districtNumber].addVotersRep(voteCount);
+}
+
+void States::addOtherVotes(int voteCount, int districtNumber)
+{
+	setOtherPresVotes(voteCount);
+	setOtherSenVotes(voteCount);
+	this->districtMap[districtNumber].addVotersOther(voteCount);
+}
+
+
+Voter::party States::determineWinner() {
+	if (democratPresVotes > republicanPresVotes)
+		return Voter::party::DEM;
+	else
+		return Voter::party::REP;
+}
+
+
+
 
 float States::getPercent(int num)
 {
 	if (num == 0)
 	{
-		return (float)democratPresVotes / (float)voterCapacity;
+		return 100*(float)democratPresVotes / (float)voterCapacity;
 	}
 	else if (num == 1)
 	{
-		return (float)republicanPresVotes / (float)voterCapacity;
+		return 100*(float)republicanPresVotes / (float)voterCapacity;
 	}
 	else if (num == 2)
 	{
-		return (float)otherPresVotes / (float)voterCapacity;
+		return 100*(float)otherPresVotes / (float)voterCapacity;
 	}
 	else if (num == 3)
 	{
-		return (float)democratSenVotes / (float)voterCapacity;
+		return 100*(float)democratSenVotes / (float)voterCapacity;
 	}
 	else if (num == 4)
 	{
-		return (float)republicanSenVotes / (float)voterCapacity;
+		return 100*(float)republicanSenVotes / (float)voterCapacity;
 	}
 	else if (num == 5)
 	{
-		return (float)otherSenVotes / (float)voterCapacity;
+		return 100*(float)otherSenVotes / (float)voterCapacity;
 	}
 }
 
 void States::districtInfo()
-{
-	for (int i = 0; i < this->numDistricts; i++)
+{	
+	for (int i = 1; i < this->numDistricts+1; i++)
 	{
 		cout << "\nRepresentative Election Data for district " << i << " in " << this->state << ": " << endl;
-		cout << "Candidate Name: " << districtMap[i].getDemocrat() << " | Vote Count: " << districtMap[i].getVotersDem() << "   | Vote Percentage: " << districtMap[i].getPercent(6) << "%" << endl;
-		cout << "Candidate Name: " << districtMap[i].getRepublican() << " | Vote Count: " << districtMap[i].getVotersRep() << "   | Vote Percentage: " << districtMap[i].getPercent(7) << "%" << endl;
-		cout << "Candidate Name: Other      | Vote Count: " << districtMap[i].getVotersOther() << " | Vote Percentage: " << districtMap[i].getPercent(8) << "%" << endl;
+		printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getDemocrat().c_str(), districtMap[i].getVotersDem(), districtMap[i].getPercent(6));
+		printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getRepublican().c_str(), districtMap[i].getVotersRep(), districtMap[i].getPercent(7));
+		printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getVotersOther(), districtMap[i].getPercent(8));
 	}
 }
 
-//float States::getPerDemPres()
-//{
-//	return percentDemPres;
-//}
-//
-//float States::getPerRepPres()
-//{
-//	return percentRepPres;
-//}
-//
-//float States::getPerOtherPres()
-//{
-//	return percentOtherPres;
-//}
-//
-//float States::getPerDemSen()
-//{
-//	return percentDemSen;
-//}
-//
-//float States::getPerRepSen()
-//{
-//	return percentRepSen;
-//}
-//
-//float States::getPerOtherSen()
-//{
-//	return percentOtherSen;
-//}
-//
-//void States::setPerDemPres(float f)
-//{
-//	percentDemPres = f;
-//}
-//
-//void States::setPerRepPres(float f)
-//{
-//	percentRepPres = f;
-//}
-//
-//void States::setPerOtherPres(float f)
-//{
-//	percentOtherPres = f;
-//}
-//
-//void States::setPerDemSen(float f)
-//{
-//	percentDemSen = f;
-//}
-//
-//void States::setPerRepSen(float f)
-//{
-//	percentRepSen = f;
-//}
-//
-//void States::setPerOtherSen(float f)
-//{
-//	percentOtherSen = f;
-//}
 
 
 

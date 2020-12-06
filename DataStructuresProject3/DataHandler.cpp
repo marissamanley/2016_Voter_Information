@@ -1,6 +1,9 @@
 #include "DataHandler.h"
 
 unordered_map<string, States> DataHandler::stateMap;
+Tree* DataHandler::stateTree = new Tree();
+int DataHandler::demElectors;
+int DataHandler::repElectors;
 
 
 /*
@@ -69,11 +72,87 @@ void DataHandler::readCSV(string filePath, int offset) {
 			Districts district(districtNumber, numVoters, perDem, perRep, demRep, repRep);
 			state.districtMap.emplace(i, district);
 		}
-		
+		DataHandler::stateTree->root = DataHandler::stateTree->insert(DataHandler::stateTree->root, &state);
 		stateMap.emplace(stateName, state);
 	}
 }
 
+
+void DataHandler::createVoters() {
+	auto iter = DataHandler::stateMap.begin();
+	//loops through every state
+	int treeCount = 0;
+	for (iter; iter != DataHandler::stateMap.end(); iter++) {
+		//loops through every district within that state
+		auto& curState = iter->second;
+		TreeNode* curTreeState = stateTree->search(stateTree->root, curState.getState());
+		for (int i = 1; i < iter->second.getNumDistricts() + 1; i++) {
+			auto& curDistrict = iter->second.districtMap[i];
+			int demCount = 0;
+			int repCount = 0;
+			int otherCount = 0;
+			//loops through the number of voters within that district
+			for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
+				//generates what party the voter is voting for
+				Voter::party castVote = Voter::vote(curDistrict.getInitPercentDem(), curDistrict.getInitPercentRep(), curDistrict.getInitPercentOther());
+				//Insert into Splay tree here
+				switch (castVote)
+				{
+				case Voter::DEM:
+					demCount++;
+					break;
+				case Voter::REP:
+					repCount++;
+					break;
+				case Voter::THIRD:
+					otherCount++;
+					break;
+				default:
+					break;
+				}
+			}
+			curTreeState->state.addDemVotes(demCount, i);
+			curTreeState->state.addRepVotes(repCount, i);
+			curTreeState->state.addOtherVotes(otherCount, i);
+			curState.addDemVotes(demCount, i);
+			curState.addRepVotes(repCount, i);
+			curState.addOtherVotes(otherCount, i);
+		}
+	}
+}
+
+
+void DataHandler::calculateElectoralVotes() {
+	auto iter = DataHandler::stateMap.begin();
+	demElectors = 0;
+	repElectors = 0;
+	for (iter; iter != DataHandler::stateMap.end(); iter++) {
+		auto& curState = iter->second;
+		Voter::party winner = curState.determineWinner();
+		switch (winner)
+		{
+		case Voter::DEM:
+			demElectors += curState.getElectoralVotes();
+			break;
+		case Voter::REP:
+			repElectors += curState.getElectoralVotes();
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+int DataHandler::demElectoralVotes() {
+	return demElectors;
+}
+
+int DataHandler::repElectoralVotes() {
+	return repElectors;
+}
+
 void DataHandler::initData() {
 	readCSV("District_map.csv");
+	createVoters();
+	calculateElectoralVotes();
 }
