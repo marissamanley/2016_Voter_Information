@@ -164,7 +164,7 @@ float States::getPercent(int num)
 
 void States::districtInfo()
 {
-	for (int i = 0; i < this->numDistricts; i++)
+	for (int i = 1; i < this->numDistricts+1; i++)
 	{
 		cout << "\nRepresentative Election Data for district " << i << " in " << this->state << ": " << endl;
 		cout << "Candidate Name: " << districtMap[i].getDemocrat() << " | Vote Count: " << districtMap[i].getVotersDem() << "   | Vote Percentage: " << districtMap[i].getPercent(6) << "%" << endl;
