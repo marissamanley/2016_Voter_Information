@@ -40,7 +40,7 @@ int main()
         cout << "[2] AVL Tree\n" << endl;
 
 
-
+        cout << "Selection: ";
         cin >> sortInput;
 
         if (sortInput == 0)
@@ -54,7 +54,7 @@ int main()
         int input = 1;
         while (input != 0)
         {
-            cout << "Please input one of the folowing to select the National Election Data, all Senatorial data, or a specific state" << endl;
+            cout << "Please input one of the folowing to select the National Election Data, all Senatorial data, or a specific state:" << endl;
             cout << "[0] Return to Data Access Method Selection" << endl;
             cout << "[51] National Election Data " << endl;
             cout << "[52] All Senatorial Election Data\n" << endl;
@@ -96,7 +96,7 @@ int main()
                         }
                         else
                         {
-                            cout << "\nNo Senatorial Election Data available for " << j->second.getState() << endl;
+                            cout << "\nNo Senatorial Election Data available for " << j->second.getState() << "." << endl;
                         }
                     }
                 }
@@ -152,7 +152,7 @@ int main()
                         }
                         else
                         {
-                            cout << "No Senatorial Election Data available for " << state.getState() << endl;
+                            cout << "No Senatorial Election Data available for " << state.getState() << "." << endl;
                         }
                     }
 
@@ -164,12 +164,14 @@ int main()
                     else if (input2 == 4)
                     {
                         int distInput = 1;
-                        cout << "There are " << state.getNumDistricts() << " congressional districts in the state of " << state.getState() << ". Input number for a district. Press 0 to exit District search:";
+                        cout << "There are " << state.getNumDistricts() << " congressional districts in the state of " << state.getState() << ". Input number for a district. Press 0 to exit District search:" << endl;
+                        cout << "Selection: ";
                         cin >> distInput;
                         Districts district = state.districtMap[distInput];
-                        //print out candidates
-                        cout << "District Number: " << district.getDistrict() << endl;
-                        cout << "Number of voters: " << district.getVoterCapacity() << endl;
+                        cout << "\nRepresentative Election Data for district " << distInput << " in " << state.getState() << ": " << endl;
+                        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", district.getDemocrat().c_str(), district.getVotersDem(), district.getPercent(6));
+                        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", district.getRepublican().c_str(), district.getVotersRep(), district.getPercent(7));
+                        printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f \n", district.getVotersOther(), district.getPercent(8));
                     }
                 }
             }
