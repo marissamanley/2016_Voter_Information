@@ -73,13 +73,26 @@ int main()
             cin >> input;
             if (input == 51)
             {
-                cout << "National Election Data:" << endl;
-                int* info = nationalInfoMap(sMap);
-                // Add Electoral College Votes
-                cout << "Candidate Name: Joe Biden                 | Vote Count: " << info[0] << "   | Vote Percentage: " << ((double)info[0]) / info[3] << endl;
-                cout << "Candidate Name: Donald Trump              | Vote Count: " << info[1] << "   | Vote Percentage: " << ((double)info[1]) / info[3] << endl;
-                cout << "Candidate Name: Other                     | Vote Count: " << info[2] << "   | Vote Percentage: " << ((double)info[2]) / info[3] << endl;
-                cout << endl;
+                if (sortInput == 1)
+                {
+                    cout << "National Election Data:" << endl;
+                    int* info = nationalInfoMap(sMap);
+                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: ", info[0], ((double)info[0]) / info[3], DataHandler::demElectoralVotes());
+                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: ", info[1], ((double)info[1]) / info[3], DataHandler::repElectoralVotes());
+                    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0", info[2], ((double)info[2]) / info[3]);
+                    cout << endl;
+                }
+                else
+                {
+                    int info[3];
+                    nationalInfoAVL(sTree->root, info);
+                    int total = info[0] + info[1] + info[2];
+                    cout << "National Election Data:" << endl;
+                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: ", info[0], ((double)info[0]) / total, DataHandler::demElectoralVotes());
+                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: ", info[1], ((double)info[1]) / total, DataHandler::repElectoralVotes());
+                    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0", info[2], ((double)info[2]) / total);
+                    cout << endl;
+                }
             }
             else if (input == 52)
             {
@@ -87,12 +100,12 @@ int main()
                 {
                     for (auto j = sMap.begin(); j != sMap.end(); j++)
                     {
-                        if (j->second.getDemSenator().compare("NONE") != 0)
+                        if (j->second.getDemSenator().compare("NONE") != 0 && j->second.getRepSenator().compare("NONE") != 0)
                         {
                             cout << "\nSenatorial Election Data for " << j->second.getState() << ": " << endl;
-                            printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", j->second.getDemSenator().c_str(), j->second.getDemSenVotes(), j->second.getPercent(3));
-                            printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", j->second.getRepSenator().c_str(), j->second.getRepSenVotes(), j->second.getPercent(4));
-                            printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f \n", j->second.getOtherSenVotes(), j->second.getPercent(5));
+                            printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", j->second.getDemSenator().c_str(), j->second.getDemSenVotes(), j->second.getPercent(3));
+                            printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", j->second.getRepSenator().c_str(), j->second.getRepSenVotes(), j->second.getPercent(4));
+                            printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", j->second.getOtherSenVotes(), j->second.getPercent(5));
                         }
                         else
                         {
@@ -120,7 +133,7 @@ int main()
 
                 cout << "State: " << state.getState() << endl;
                 cout << "Number of voters: " << state.getVoterCapacity() << endl;
-                cout << "Number of electoral votes: " << state.getElectoralVotes() << endl << endl;
+                cout << "Number of electoral votes: " << state.getElectoralVotes() << endl;
 
                 int input2 = -1;
                 while (input2 != 0) {
@@ -136,19 +149,19 @@ int main()
                     if (input2 == 1)
                     {
                         cout << "National Election Data for " << state.getState() << ": " << endl;
-                        cout << "Candidate Name: Joe Biden                 | Vote Count: " << state.getDemPresVotes() << "   | Vote Percentage: " << state.getPercent(0) << "%" << endl;
-                        cout << "Candidate Name: Donald Trump              | Vote Count: " << state.getRepPresVotes() << "   | Vote Percentage: " << state.getPercent(1) << "%" << endl;
-                        cout << "Candidate Name: Other                     | Vote Count: " << state.getOtherPresVotes() << "   | Vote Percentage: " << state.getPercent(2) << "%" << endl;
+                        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", presidentDem.c_str(), state.getDemPresVotes(), state.getPercent(0));
+                        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", presidentRep.c_str(), state.getRepPresVotes(), state.getPercent(1));
+                        printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", state.getOtherPresVotes(), state.getPercent(2));
                     }
 
                     else if (input2 == 2)
                     {
-                        if (state.getDemSenator().compare("NONE") != 0)
+                        if (state.getDemSenator().compare("NONE") != 0 && state.getRepSenator().compare("NONE") != 0)
                         {
                             cout << "Senatorial Election Data for " << state.getState() << ": " << endl;
-                            printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", state.getDemSenator().c_str(), state.getDemSenVotes(), state.getPercent(3));
-                            printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", state.getRepSenator().c_str(), state.getRepSenVotes(), state.getPercent(4));
-                            printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f \n", state.getOtherSenVotes(), state.getPercent(5));
+                            printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", state.getDemSenator().c_str(), state.getDemSenVotes(), state.getPercent(3));
+                            printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", state.getRepSenator().c_str(), state.getRepSenVotes(), state.getPercent(4));
+                            printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", state.getOtherSenVotes(), state.getPercent(5));
                         }
                         else
                         {
@@ -169,9 +182,9 @@ int main()
                         cin >> distInput;
                         Districts district = state.districtMap[distInput];
                         cout << "\nRepresentative Election Data for district " << distInput << " in " << state.getState() << ": " << endl;
-                        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", district.getDemocrat().c_str(), district.getVotersDem(), district.getPercent(6));
-                        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", district.getRepublican().c_str(), district.getVotersRep(), district.getPercent(7));
-                        printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f \n", district.getVotersOther(), district.getPercent(8));
+                        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", district.getDemocrat().c_str(), district.getVotersDem(), district.getPercent(6));
+                        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", district.getRepublican().c_str(), district.getVotersRep(), district.getPercent(7));
+                        printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", district.getVotersOther(), district.getPercent(8));
                     }
                 }
             }
@@ -216,7 +229,7 @@ void nationalInfoAVL(TreeNode* root, int* info)
 
 	info[0] += root->state.getDemPresVotes();
     info[1] += root->state.getRepPresVotes();
-    info[3] += root->state.getOtherPresVotes();
+    info[2] += root->state.getOtherPresVotes();
 
 	nationalInfoAVL(root->right, info);
 }
@@ -229,137 +242,10 @@ void senatorialInfoAVL(TreeNode* root)
     senatorialInfoAVL(root->left);
 
     cout << "\nSenatorial Election Data for " << root->state.getState() << ": " << endl;
-    printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", root->state.getDemSenator().c_str(), root->state.getDemSenVotes(), root->state.getPercent(3));
-    printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", root->state.getRepSenator().c_str(), root->state.getRepSenVotes(), root->state.getPercent(4));
-    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f \n", root->state.getOtherSenVotes(), root->state.getPercent(5));
+    printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getDemSenator().c_str(), root->state.getDemSenVotes(), root->state.getPercent(3));
+    printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getRepSenator().c_str(), root->state.getRepSenVotes(), root->state.getPercent(4));
+    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getOtherSenVotes(), root->state.getPercent(5));
 
     senatorialInfoAVL(root->right);
 }
-
-
-
-
-
-
-
-
-
-
-
-/*#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include "States.h"
-#include "Districts.h"
-#include "Voter.h"
-#include "DataHandler.h"
-using namespace std;
-
-void printStates();
-void createVoters();
-
-/*
- * TODO:
- *  - Fill out CSV for every state
- *  - Create Splay tree to pass in voters
- *  - Calculate winners for each candidate
- *  - Calculate electoral college wins
- *  - User interface to display data
- *  - Search to display data
- * 
- * Potentially?
- *  Make this project more dynamic and modular:
- *  - Allow user to increase/decrease voter turnout at the nation, state, or district level
- *  - Allow user to increase/decrease voter turnout for a specific party at the nation, state, or district level
- *      - lets users see how turnout can affect the electoral college
- *      - would set caps for max turnout at each district
- */
-
-//int main()
-//{
-//    DataHandler::initData();
-//    printStates();
-//    createVoters();
-//
-//    return 0;
-//}
-
-/*
- * All state and district information are obtained in the CSV master file
- * The values in the CSV are based off the results of the 2020 election
- * All information is gathered from here: http://www.electproject.org/2020g
- */
-
-/*void printStates()
-{
-    auto iter = DataHandler::stateMap.begin();
-    for (iter; iter != DataHandler::stateMap.end(); iter++) {
-        string state = iter->second.getState();
-        cout << fixed << setprecision(1);
-        cout << "State: " << state << endl;
-        cout << "Democrat Senator: " << iter->second.getDemSenator() << endl;
-        cout << "Republican Senator: " << iter->second.getRepSenator() << endl;
-        cout << "Number of voters: " << iter->second.getVoterCapacity() << endl;
-        cout << "Number of electoral votes: " << iter->second.getElectoralVotes() << endl << endl;
-
-        for (int i = 1; i < iter->second.getNumDistricts()+1; i++) {
-            auto& curDistrict = iter->second.districtMap[i];
-            cout << "District Number: " << curDistrict.getDistrict() << endl;
-            cout << "Number of voters: " << curDistrict.getVoterCapacity() << endl;
-            cout << "Democrat Representative: " << curDistrict.getDemocrat() << endl;
-            cout << "Republican Representative: " << curDistrict.getRepublican() << endl;
-        }
-    }
-}
-
-/*
- * Generates random voters
- * Starts at first state, then first district within that state
- * Generates voters based on percent dem, rep, other
- * Push vote to splay tree
- *
- * Question: Do we want the potential for voters to not vote for all races? (presidential, Senate, House)
- *           Do we want the potential for voters to not vote down party line?
- */
-
-/*void createVoters() {
-    int demCount = 0;
-    int repCount = 0;
-    int otherCount = 0;
-    auto iter = DataHandler::stateMap.begin();
-    //loops through every state
-    for (iter; iter != DataHandler::stateMap.end(); iter++) {
-        //loops through every district within that state
-        for (int i = 1; i < iter->second.getNumDistricts()+1; i++) {
-            auto& curDistrict = iter->second.districtMap[i];
-            //loops through the number of voters within that district
-            for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
-                //generates what party the voter is voting for
-                Voter::party castVote = Voter::vote(curDistrict.getInitPercentDem(), curDistrict.getInitPercentRep(), curDistrict.getInitPercentOther());
-                //Insert into Splay tree here
-                switch (castVote)
-                {
-                case Voter::DEM:
-                    demCount++;
-                    break;
-                case Voter::REP:
-                    repCount++;
-                    break;
-                case Voter::THIRD:
-                    otherCount++;
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-    }
-    cout << "Dem Count: " << demCount << endl;
-    cout << "Rep Count: " << repCount << endl;
-    cout << "Third Party Count: " << otherCount << endl;
-}
-
-*/
-
 
