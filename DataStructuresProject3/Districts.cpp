@@ -189,38 +189,38 @@ float Districts::getPercent(int num)
 {
 	if (num == 0)
 	{
-		return (float)votersPresDem / (float)voterCapacity;
+		return 100 * (float)votersPresDem / (float)voterCapacity;
 	}
 	else if (num == 1)
 	{
-		return (float)votersPresRep / (float)voterCapacity;
+		return 100 * (float)votersPresRep / (float)voterCapacity;
 	}
 	else if (num == 2)
 	{
-		return (float)votersPresOther / (float)voterCapacity;
+		return 100 * (float)votersPresOther / (float)voterCapacity;
 	}
 	else if (num == 3)
 	{
-		return (float)votersSenDem / (float)voterCapacity;
+		return 100 * (float)votersSenDem / (float)voterCapacity;
 	}
 	else if (num == 4)
 	{
-		return (float)votersSenRep / (float)voterCapacity;
+		return 100 * (float)votersSenRep / (float)voterCapacity;
 	}
 	else if (num == 5)
 	{
-		return (float)votersSenOther / (float)voterCapacity;
+		return 100 * (float)votersSenOther / (float)voterCapacity;
 	}
 	else if (num == 6)
 	{
-		return (float)votersDem / (float)voterCapacity;
+		return 100 * (float)votersDem / (float)voterCapacity;
 	}
 	else if (num == 7)
 	{
-		return (float)votersRep / (float)voterCapacity;
+		return 100 * (float)votersRep / (float)voterCapacity;
 	}
 	else if (num == 8)
 	{
-		return (float)votersOther / (float)voterCapacity;
+		return 100 * (float)votersOther / (float)voterCapacity;
 	}
 }

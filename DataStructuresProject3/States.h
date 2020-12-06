@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <iostream>
 #include "Districts.h"
+#include "Voter.h"
 using namespace std;
 
 /*
@@ -38,7 +39,6 @@ private:
 	int otherSenVotes = 0;
 
 public:
-	
 	static unordered_map<int, Districts> districtMap;
 
 	States();
@@ -67,6 +67,8 @@ public:
 	void addDemVotes(int voteCount, int districtNumber);
 	void addRepVotes(int voteCount, int districtNumber);
 	void addOtherVotes(int voteCount, int districtNumber);
+
+	Voter::party determineWinner();
 
 	float getPercent(int num);
 	void districtInfo();

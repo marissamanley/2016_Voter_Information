@@ -21,8 +21,8 @@ int main()
     unordered_map<string, States>& sMap = DataHandler::stateMap;
     Tree* sTree = DataHandler::stateTree;
 
-    string presidentDem;
-    string presidentRep;
+    string presidentDem = "Joe Biden";
+    string presidentRep = "Donald Trump";
 
     string states[50] = { "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
          "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
@@ -75,7 +75,7 @@ int main()
             {
                 cout << "National Election Data:" << endl;
                 int* info = nationalInfoMap(sMap);
-
+                // Add Electoral College Votes
                 cout << "Candidate Name: Joe Biden    | Vote Count: " << info[0] << " | Vote Percentage: " << ((double)info[0]) / info[3] << endl;
                 cout << "Candidate Name: Donald Trump | Vote Count: " << info[1] << " | Vote Percentage: " << ((double)info[1]) / info[3] << endl;
                 cout << "Candidate Name: Other        | Vote Count: " << info[2] << " | Vote Percentage: " << ((double)info[2]) / info[3] << endl;
@@ -105,7 +105,7 @@ int main()
                     senatorialInfoAVL(sTree->root);
                 }
             }
-            else
+            else if(input >= 1 && input <= 50)
             {
                 int selectedState = input - 1;
                 States state;
@@ -119,8 +119,6 @@ int main()
                 }
 
                 cout << "State: " << state.getState() << endl;
-                cout << "Democrat Senator: " << state.getDemSenator() << endl;
-                cout << "Republican Senator: " << state.getRepSenator() << endl;
                 cout << "Number of voters: " << state.getVoterCapacity() << endl;
                 cout << "Number of electoral votes: " << state.getElectoralVotes() << endl << endl;
 
@@ -169,6 +167,7 @@ int main()
                         cout << "There are " << state.getNumDistricts() << " congressional districts in the state of " << state.getState() << ". Input number for a district. Press 0 to exit District search:";
                         cin >> distInput;
                         Districts district = state.districtMap[distInput];
+                        //print out candidates
                         cout << "District Number: " << district.getDistrict() << endl;
                         cout << "Number of voters: " << district.getVoterCapacity() << endl;
                     }

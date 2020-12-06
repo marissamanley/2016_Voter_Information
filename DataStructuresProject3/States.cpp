@@ -133,6 +133,15 @@ void States::addOtherVotes(int voteCount, int districtNumber)
 }
 
 
+Voter::party States::determineWinner() {
+	if (democratPresVotes > republicanPresVotes)
+		Voter::party::DEM;
+	else
+		Voter::party::REP;
+}
+
+
+
 
 float States::getPercent(int num)
 {
@@ -173,65 +182,6 @@ void States::districtInfo()
 	}
 }
 
-//float States::getPerDemPres()
-//{
-//	return percentDemPres;
-//}
-//
-//float States::getPerRepPres()
-//{
-//	return percentRepPres;
-//}
-//
-//float States::getPerOtherPres()
-//{
-//	return percentOtherPres;
-//}
-//
-//float States::getPerDemSen()
-//{
-//	return percentDemSen;
-//}
-//
-//float States::getPerRepSen()
-//{
-//	return percentRepSen;
-//}
-//
-//float States::getPerOtherSen()
-//{
-//	return percentOtherSen;
-//}
-//
-//void States::setPerDemPres(float f)
-//{
-//	percentDemPres = f;
-//}
-//
-//void States::setPerRepPres(float f)
-//{
-//	percentRepPres = f;
-//}
-//
-//void States::setPerOtherPres(float f)
-//{
-//	percentOtherPres = f;
-//}
-//
-//void States::setPerDemSen(float f)
-//{
-//	percentDemSen = f;
-//}
-//
-//void States::setPerRepSen(float f)
-//{
-//	percentRepSen = f;
-//}
-//
-//void States::setPerOtherSen(float f)
-//{
-//	percentOtherSen = f;
-//}
 
 
 
