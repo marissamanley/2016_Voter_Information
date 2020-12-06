@@ -4,7 +4,7 @@
 #include "Tree.h"
 #include "TreeNode.h"
 #include "Voter.h"
-
+using namespace std;
 /*
  * The purpose of this class is to initialize the data from the CSV file and store it within unordered_maps
  * Class can potentially be used for taking in and holding election results
@@ -24,8 +24,6 @@ private:
 	static void readCSV(string filePath, int offset = 0);
 	static void createVoters();
     static void calculateElectoralVotes();
-    static int demElectors;
-    static int repElectors;
 
 public:
     string states[50] = { "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
@@ -40,5 +38,7 @@ public:
     static Tree* stateTree;
     static int demElectoralVotes();
     static int repElectoralVotes();
+    static int demElectors;
+    static int repElectors;
 };
 
