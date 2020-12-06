@@ -175,9 +175,9 @@ void States::districtInfo()
 	for (int i = 1; i < this->numDistricts+1; i++)
 	{
 		cout << "\nRepresentative Election Data for district " << i << " in " << this->state << ": " << endl;
-		printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getDemocrat().c_str(), districtMap[i].getVotersDem(), districtMap[i].getPercent(6));
-		printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getRepublican().c_str(), districtMap[i].getVotersRep(), districtMap[i].getPercent(7));
-		printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getVotersOther(), districtMap[i].getPercent(8));
+		printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", districtMap[i].getDemocrat().c_str(), districtMap[i].getVotersDem(), districtMap[i].getPercent(6));
+		printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", districtMap[i].getRepublican().c_str(), districtMap[i].getVotersRep(), districtMap[i].getPercent(7));
+		printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", districtMap[i].getVotersOther(), districtMap[i].getPercent(8));
 	}
 }
 
