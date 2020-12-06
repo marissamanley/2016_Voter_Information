@@ -36,13 +36,13 @@ int main()
     cout << "[0] Exit 539 Election Data Search" << endl;
     cout << "[1] Unordered Map" << endl;
     cout << "[2] AVL Tree\n" << endl;
-    
+
 
     int sortInput;
     cin >> sortInput;
 
     if (sortInput == 0)
-    { 
+    {
         cout << "Thank you for using 539 Election Data Search!" << endl;
         return 0;
     }
@@ -64,6 +64,7 @@ int main()
 
 
     int input = 1;
+
     while (input != 0)
     {
         cin >> input;
@@ -72,9 +73,9 @@ int main()
             cout << "National Election Data:" << endl;
             int* info = nationalInfoMap(sMap);
 
-            cout << "Candidate Name: Joe Biden    | Vote Count: " << info[0] << " | Vote Percentage: " << ((double)info[0])/info[3] << endl;
-            cout << "Candidate Name: Donald Trump | Vote Count: " << info[1] << " | Vote Percentage: " << ((double)info[1])/info[3] << endl;
-            cout << "Candidate Name: Other        | Vote Count: " << info[2] << " | Vote Percentage: " << ((double)info[2])/info[3] << endl;
+            cout << "Candidate Name: Joe Biden    | Vote Count: " << info[0] << " | Vote Percentage: " << ((double)info[0]) / info[3] << endl;
+            cout << "Candidate Name: Donald Trump | Vote Count: " << info[1] << " | Vote Percentage: " << ((double)info[1]) / info[3] << endl;
+            cout << "Candidate Name: Other        | Vote Count: " << info[2] << " | Vote Percentage: " << ((double)info[2]) / info[3] << endl;
             cout << endl;
         }
         else if (input == 52)
@@ -86,9 +87,9 @@ int main()
                     if (j->second.getDemSenator().compare("NONE") != 0)
                     {
                         cout << "\nSenatorial Election Data for " << j->second.getState() << ": " << endl;
-                            cout << "Candidate Name: " << j->second.getDemSenator() << " | Vote Count: " << j->second.getDemSenVotes() << "   | Vote Percentage: " << j->second.getPercent(3) << "%" << endl;
-                            cout << "Candidate Name: " << j->second.getRepSenator() << " | Vote Count: " << j->second.getRepSenVotes() << "   | Vote Percentage: " << j->second.getPercent(4) << "%" << endl;
-                            cout << "Candidate Name: Other      | Vote Count: " << j->second.getOtherSenVotes() << " | Vote Percentage: " << j->second.getPercent(5) << "%" << endl;
+                        cout << "Candidate Name: " << j->second.getDemSenator() << " | Vote Count: " << j->second.getDemSenVotes() << "   | Vote Percentage: " << j->second.getPercent(3) << "%" << endl;
+                        cout << "Candidate Name: " << j->second.getRepSenator() << " | Vote Count: " << j->second.getRepSenVotes() << "   | Vote Percentage: " << j->second.getPercent(4) << "%" << endl;
+                        cout << "Candidate Name: Other      | Vote Count: " << j->second.getOtherSenVotes() << " | Vote Percentage: " << j->second.getPercent(5) << "%" << endl;
                     }
                     else
                     {
@@ -106,7 +107,7 @@ int main()
             input--;
             States state;
             TreeNode* stateNode;
-            if(sortInput == 1)
+            if (sortInput == 1)
                 state = sMap[states[input]];
             else
             {
@@ -163,7 +164,7 @@ int main()
                 while (distInput != 0)
                 {
                     cin >> distInput;
-                    Districts district = state.districtMap[--distInput];
+                    Districts district = state.districtMap[distInput];
                     cout << "District Number: " << district.getDistrict() << endl;
                     cout << "Number of voters: " << district.getVoterCapacity() << endl;
 
@@ -173,7 +174,7 @@ int main()
                     cout << "[1] National Election data" << endl;
                     cout << "[2] Senatorial Election Data" << endl;
                     cout << "[3] District Election Data" << endl;
-                   
+
                     while (dataInput != 0)
                     {
                         cin >> dataInput;
@@ -205,7 +206,7 @@ int main()
                             cout << "Candidate Name: " << district.getRepublican() << " | Vote Count: " << district.getVotersRep() << "   | Vote Percentage: " << district.getPercent(7) << "%" << endl;
                             cout << "Candidate Name: Other      | Vote Count: " << district.getVotersOther() << " | Vote Percentage: " << district.getPercent(8) << "%" << endl;
                         }
-                        
+
                         cout << "\nPlease input one of the following to select the data for district " << distInput << ":" << endl;
                         cout << "[0] Leave Single District Data Search " << endl;
                         cout << "[1] National Election data" << endl;
@@ -218,7 +219,7 @@ int main()
             }
         }
 
-
+    }
         cout << "\nPlease input the number for a state, or enter 51 for National Election Data. Press 0 to exit program:\n" << endl;
         cout << "[1] Alabama     | [11] Hawaii   | [21] Massachusetts | [31] New Mexico     | [41] South Dakota\n\
     [2] Alaska      | [12] Idaho    | [22] Michigan      | [32] New York       | [42] Tennessee\n\
@@ -230,10 +231,11 @@ int main()
     [8] Deleware    | [18] Loisiana | [28] Nevada        | [38] Pennsylvania   | [48] West Virginia\n\
     [9] Florida     | [19] Maine    | [29] New Hampshire | [39] Rhode Island   | [49] Wisconsin\n\
     [10] Georgia    | [20] Maryland | [30] New Jersey    | [40] South Carolina | [50] Wyoming\n\n";
-    }
-
     return 0;
 }
+
+    
+
 
 
 

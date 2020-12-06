@@ -75,9 +75,6 @@ void DataHandler::readCSV(string filePath, int offset) {
 
 
 void DataHandler::createVoters() {
-	int demCount = 0;
-	int repCount = 0;
-	int otherCount = 0;
 	auto iter = DataHandler::stateMap.begin();
 	//loops through every state
 	for (iter; iter != DataHandler::stateMap.end(); iter++) {
@@ -85,6 +82,9 @@ void DataHandler::createVoters() {
 		auto& curState = iter->second;
 		for (int i = 1; i < iter->second.getNumDistricts() + 1; i++) {
 			auto& curDistrict = iter->second.districtMap[i];
+			int demCount = 0;
+			int repCount = 0;
+			int otherCount = 0;
 			//loops through the number of voters within that district
 			for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
 				//generates what party the voter is voting for
@@ -108,9 +108,6 @@ void DataHandler::createVoters() {
 			curState.addDemVotes(demCount, i);
 			curState.addRepVotes(repCount, i);
 			curState.addOtherVotes(otherCount, i);
-			//curDistrict.setVotersDem(demCount);
-			//curDistrict.setVotersRep(repCount);
-			//curDistrict.setVotersOther(otherCount);
 		}
 	}
 }
