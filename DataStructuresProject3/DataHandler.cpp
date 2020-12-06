@@ -48,7 +48,6 @@ void DataHandler::readCSV(string filePath, int offset) {
 
 		States state(stateName, numVoters, numDistricts, demRep, repRep, electoralVotes);
 		
-
 		for (int i = 1; i < numDistricts+1; i++) {
 			
 			string districtNumber_;
@@ -70,10 +69,11 @@ void DataHandler::readCSV(string filePath, int offset) {
 			float perRep = stof(percentRep);
 
 			Districts district(districtNumber, numVoters, perDem, perRep, demRep, repRep);
-			state.districtMap.emplace(i, district);
+			state.districtMap[i] = district;
 		}
 		DataHandler::stateTree->root = DataHandler::stateTree->insert(DataHandler::stateTree->root, &state);
-		stateMap.emplace(stateName, state);
+
+		stateMap[stateName] = state;
 	}
 }
 
