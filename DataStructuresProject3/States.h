@@ -39,7 +39,7 @@ private:
 	int otherSenVotes = 0;
 
 public:
-	static unordered_map<int, Districts> districtMap;
+	unordered_map<int, Districts> districtMap;
 
 	States();
 	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);

@@ -1,6 +1,5 @@
 #include "States.h"
 
-unordered_map<int, Districts> States::districtMap;
 
 //created so you can instantiate a states object to call the readCSV function
 //Might move readCSV and maps elsewhere for modularity and separation of tasks
