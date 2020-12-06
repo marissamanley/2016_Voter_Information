@@ -135,9 +135,9 @@ void States::addOtherVotes(int voteCount, int districtNumber)
 
 Voter::party States::determineWinner() {
 	if (democratPresVotes > republicanPresVotes)
-		Voter::party::DEM;
+		return Voter::party::DEM;
 	else
-		Voter::party::REP;
+		return Voter::party::REP;
 }
 
 
@@ -172,13 +172,13 @@ float States::getPercent(int num)
 }
 
 void States::districtInfo()
-{
+{	
 	for (int i = 1; i < this->numDistricts+1; i++)
 	{
 		cout << "\nRepresentative Election Data for district " << i << " in " << this->state << ": " << endl;
-		cout << "Candidate Name: " << districtMap[i].getDemocrat() << " | Vote Count: " << districtMap[i].getVotersDem() << "   | Vote Percentage: " << districtMap[i].getPercent(6) << "%" << endl;
-		cout << "Candidate Name: " << districtMap[i].getRepublican() << " | Vote Count: " << districtMap[i].getVotersRep() << "   | Vote Percentage: " << districtMap[i].getPercent(7) << "%" << endl;
-		cout << "Candidate Name: Other      | Vote Count: " << districtMap[i].getVotersOther() << " | Vote Percentage: " << districtMap[i].getPercent(8) << "%" << endl;
+		printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getDemocrat().c_str(), districtMap[i].getVotersDem(), districtMap[i].getPercent(6));
+		printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getRepublican().c_str(), districtMap[i].getVotersRep(), districtMap[i].getPercent(7));
+		printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f \n", districtMap[i].getVotersOther(), districtMap[i].getPercent(8));
 	}
 }
 

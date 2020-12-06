@@ -3,7 +3,7 @@
 unordered_map<string, States> DataHandler::stateMap;
 Tree* DataHandler::stateTree = new Tree();
 int DataHandler::demElectors;
-int DataHandler::demElectors;
+int DataHandler::repElectors;
 
 
 /*
