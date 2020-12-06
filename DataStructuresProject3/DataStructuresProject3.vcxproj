@@ -145,6 +145,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="States.cpp" />
+    <ClCompile Include="TimeMeasure.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="TreeNode.cpp" />
     <ClCompile Include="Voter.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="States.h" />
+    <ClInclude Include="TimeMeasure.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="Voter.h" />
