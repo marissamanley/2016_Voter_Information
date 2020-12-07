@@ -2,6 +2,8 @@
 
 TimeMeasure::TimeMeasure()
 {
+    stateMapTree = DataHandler::stateTree;
+    stateMapMap = DataHandler::stateMap;
 }
 
 void TimeMeasure::compareStructures()
@@ -47,6 +49,12 @@ void TimeMeasure::compareStructures()
 
     cout << "Time taken to insert a state by unordered_map: " << fixed << timeMapInsert << setprecision(9);
     cout << "sec\n" << endl;
+
+    cout << "Time taken to traverse the AVL Tree: " << fixed << timeTreeTraversal << setprecision(9);
+    cout << "sec\n" << endl;
+
+    cout << "Time taken to traverse the unordered_map: " << fixed << timeMapTraversal << setprecision(9);
+    cout << "sec\n" << endl;
 }
 
 void TimeMeasure::updateTimeTreeInsert(double t)
@@ -65,6 +73,16 @@ void TimeMeasure::updateTimeMapInsert(double t)
     }
 }
 
+void TimeMeasure::setTimeTreeTraversal(double t)
+{
+    timeTreeTraversal = t;
+}
+
+void TimeMeasure::setTimeMapTraversal(double t)
+{
+    timeMapTraversal = t;
+}
+
 double TimeMeasure::getTimeTreeInsert()
 {
     return timeTreeInsert;
@@ -73,4 +91,14 @@ double TimeMeasure::getTimeTreeInsert()
 double TimeMeasure::getTimeMapInsert()
 {
     return timeMapInsert;
+}
+
+double TimeMeasure::getTimeTreeTraversal()
+{
+    return timeTreeTraversal;
+}
+
+double TimeMeasure::getTimeMapTraversal()
+{
+    return timeMapTraversal;
 }
