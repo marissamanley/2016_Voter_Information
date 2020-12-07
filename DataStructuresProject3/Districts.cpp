@@ -1,5 +1,6 @@
 #include "Districts.h"
 
+// Constructor that takes in parameters from the CSV
 Districts::Districts(int district, int voterCapacity, float percentDem, float percentRep, string democratRep, string republicanRep) {
 	this->district = district;
 	this->voterCapacity = voterCapacity;
@@ -10,6 +11,7 @@ Districts::Districts(int district, int voterCapacity, float percentDem, float pe
 	this->initPercentOther = 1 - (percentDem + percentRep);
 }
 
+// Many setter and getter functions for district information
 int Districts::getDistrict() {
 	return this->district;
 }
@@ -115,6 +117,7 @@ void Districts::setVotersPresOther(int v)
 	votersPresOther = v;
 }
 
+// These methods add the voter count for their respective party
 void Districts::addVotersDem(int voterCount)
 {
 	setVotersDem(voterCount);
@@ -136,7 +139,7 @@ void Districts::addVotersOther(int voterCount)
 	setVotersSenOther(voterCount);
 }
 
-
+// Initial percentages is taken from the csv, used to generate voters
 float Districts::getInitPercentDem()
 {
 	return initPercentDem;
@@ -185,6 +188,7 @@ void Districts::setRepublican(string rep)
 	republican = rep;
 }
 
+// Gets percentages for each office; used for the main menu
 float Districts::getPercent(int num)
 {
 	if (num == 0)

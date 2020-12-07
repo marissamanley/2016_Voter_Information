@@ -2,9 +2,9 @@
 
 
 //created so you can instantiate a states object to call the readCSV function
-//Might move readCSV and maps elsewhere for modularity and separation of tasks
 States::States() {};
 
+// Constructor with parameters that take in information from the csv file
 States::States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes) {
 	this->state = state;
 	this->voterCapacity = voterCapacity;
@@ -14,6 +14,7 @@ States::States(string state, int voterCapacity, int numDistricts, string demSena
 	this->electoralVotes = electoralVotes;
 }
 
+//copy constructor used for the AVL tree
 States::States(const States& s)
 {
 	this->state = s.state;
@@ -110,6 +111,13 @@ void States::setOtherSenVotes(int v)
 	this->otherSenVotes += v;
 }
 
+/*
+ * These methods add voters to their respective party
+ * Calls upon the districtMap to insert voter count within that district as well
+ * Parameters:
+ *	- voteCount: Number of voters to add
+ *	- districtNumber: Which district these votes are being added to
+ */
 void States::addDemVotes(int voteCount, int districtNumber)
 {
 	setDemPresVotes(voteCount);
@@ -131,7 +139,7 @@ void States::addOtherVotes(int voteCount, int districtNumber)
 	this->districtMap[districtNumber].addVotersOther(voteCount);
 }
 
-
+// Used to determine the presidential winner for each state, used mainly to assign electoral college votes
 Voter::party States::determineWinner() {
 	if (democratPresVotes > republicanPresVotes)
 		return Voter::party::DEM;
@@ -139,9 +147,7 @@ Voter::party States::determineWinner() {
 		return Voter::party::REP;
 }
 
-
-
-
+// Gets percentages for each office; used for the main menu
 float States::getPercent(int num)
 {
 	if (num == 0)
@@ -170,6 +176,10 @@ float States::getPercent(int num)
 	}
 }
 
+/*
+ * Prints out information for each district within the state
+ * Helper method for the main menu
+ */
 void States::districtInfo()
 {	
 	for (int i = 1; i < this->numDistricts+1; i++)

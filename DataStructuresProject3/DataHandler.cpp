@@ -9,16 +9,21 @@ int DataHandler::repElectors;
 
 /*
  * Reads the District_map CSV file to form the stateMap and DistrictMap structures
- * Reads in voter information for each district in each state
- * offset brings you to the state that you want to visit.
- * Ex: Offset = 0 brings you to first state, Alabama
+ *  The information is: state name, names of senators, electoral college voters, number of voters,
+ *			    	    number of districts, distict candidates, party representation of that district
+ *
  * States are in alphabetical order in csv
+ **
  */
 void DataHandler::readCSV(string filePath, int offset) {
 	ifstream file(filePath);
 	string lineFromFile;
 
-	//Offset plus skipping first two rows
+	/*
+	 * Offset brings you to the state that you want to visit.
+	 * Ex: Offset = 0 brings you to first state, Alabama
+	 * This automatically skips the first two rows of the csv
+	 */
 	for (int i = 0; i < offset + 2; i++) {
 		getline(file, lineFromFile);
 	}
@@ -72,6 +77,8 @@ void DataHandler::readCSV(string filePath, int offset) {
 			Districts district(districtNumber, numVoters, perDem, perRep, demRep, repRep);
 			state.districtMap[i] = district;
 		}
+
+		//Used for time comparisons between AVL and hashmap insetions
 		auto start = chrono::high_resolution_clock::now();
 		DataHandler::stateTree->root = DataHandler::stateTree->insert(DataHandler::stateTree->root, &state);
 		auto end = chrono::high_resolution_clock::now();
@@ -93,6 +100,11 @@ void DataHandler::readCSV(string filePath, int offset) {
 }
 
 
+/*
+ * This function loops through every state and every district within that state
+ * It calls upon the voter class to generate a every voter based on party percentages within that district
+ * The add vote methods are then called upon to store this voting data within each state
+ */
 void DataHandler::createVoters() {
 	auto iter = DataHandler::stateMap.begin();
 	//loops through every state
@@ -126,6 +138,7 @@ void DataHandler::createVoters() {
 					break;
 				}
 			}
+			// Adds the votes to the state object after every district
 			curTreeState->state.addDemVotes(demCount, i);
 			curTreeState->state.addRepVotes(repCount, i);
 			curTreeState->state.addOtherVotes(otherCount, i);
@@ -137,6 +150,11 @@ void DataHandler::createVoters() {
 }
 
 
+/*
+ * This method calculates the amount of electoral votes assigned to each candidate by looping
+ * through the state and retrieving which candidate won the popular vote
+ * Note: third party candidates are not considered and states with split votes are not taken into account
+ */
 void DataHandler::calculateElectoralVotes() {
 	auto iter = DataHandler::stateMap.begin();
 	demElectors = 0;
@@ -158,6 +176,8 @@ void DataHandler::calculateElectoralVotes() {
 	}
 }
 
+
+// These are getter functions for the elector votes
 int DataHandler::demElectoralVotes() {
 	return demElectors;
 }
@@ -166,6 +186,7 @@ int DataHandler::repElectoralVotes() {
 	return repElectors;
 }
 
+// This calls upon these methods to initialize all data used for the menu
 void DataHandler::initData() {
 	readCSV("District_map.csv");
 	createVoters();

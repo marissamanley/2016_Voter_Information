@@ -9,16 +9,28 @@
 #include "StoringData.h"
 using namespace std;
 /*
- * The purpose of this class is to initialize the data from the CSV file and store it within unordered_maps
- * Class can potentially be used for taking in and holding election results
-
+ * The purpose of this class is to initialze and store all information in this project
+ * All methods are static so they can be freely availale for use in any class
+ * There is no need to instantiate this class, since all information will be constant in this project
+ *
+ * Methods:
+ *	readCSV(): - Reads from a CSV file that contains information about each state
+ *			   
+ *	
+ * creatVoters(): Generates 160,000 voters based on party demographics in each district
+ *
+ * ".../ElectoralVotes(): These set of functions calculate the party winner of each state, and assigns them the electoral votes for that state
+ *
+ * initData(): Calls on all of these functions to initialize all data used for the menu
+ *
  * stateMap:
- *	- Assigns each state object (that holds all of the above information) to a numeric value
+ *	- Key: Name of State
+ *  - Value: State object that holds all information in state class
  *
- * districtMap
- *	- Assigns the name of each state to a vector of District objects that are within that state
+ * stateTree:
+ *	- Root of an AVL tree that holds state objects as their value
  *
- * readCSV initializes these maps
+ *
  */
 
 class DataHandler

@@ -10,7 +10,7 @@ using namespace std;
  *	- Makeup of the party representation within the district
  *		- This is based off of the votes for the 2020 election
  * 
- * Districts are not meant to exist on their own. They exist within a list for each state.
+ * Districts are not meant to exist on their own. They exist within a unordered_map for each state.
  * All votes are cast at the district level, thus the senate and national election results will be 
  * by each districts party representation, rather than a representation existing for each state.
  * This is balanced by each district having its own number of voters, with its size related to the districts actual size
@@ -39,8 +39,7 @@ private:
 public:
 	Districts() {};
 	Districts(int district, int voterCapacity, float percentDem, float percentRep, string democratRep, string republicanRep);
-
-	//set functions there for potential modularity 
+ 
 	int getDistrict();
 	void setDistrict(int district);
 
