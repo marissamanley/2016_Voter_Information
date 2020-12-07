@@ -5,6 +5,8 @@ using namespace std;
 //* This class is the implementation of the AVL tree used as the secondary storage
 //* option. The tree mostly performs insertion, searches, and traversals, but it also 
 //* has the capability to remove if needed. Also performs self balancing.
+//
+// This code was modified from Mark Itkin's Project 1 submission
 class Tree
 {
 public:
