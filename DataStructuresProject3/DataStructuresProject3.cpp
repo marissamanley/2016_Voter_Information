@@ -8,6 +8,7 @@
 #include "DataHandler.h"
 #include "TreeNode.h"
 #include "Tree.h"
+#include "TimeMeasure.h"
 using namespace std;
 
 
@@ -20,7 +21,7 @@ int main()
     DataHandler::initData();
     unordered_map<string, States>& sMap = DataHandler::stateMap;
     Tree* sTree = DataHandler::stateTree;
-
+    TimeMeasure meas = TimeMeasure();
     string presidentDem = "Joe Biden";
     string presidentRep = "Donald Trump";
 
@@ -37,7 +38,8 @@ int main()
         cout << "\nPlease input one of the following to select the method by which the data will be accessed:" << endl;
         cout << "[0] Exit 539 Election Data Search" << endl;
         cout << "[1] Unordered Map" << endl;
-        cout << "[2] AVL Tree\n" << endl;
+        cout << "[2] AVL Tree" << endl;
+        cout << "[3] Time Comparison\n" << endl;
 
 
         cout << "Selection: ";
@@ -49,9 +51,13 @@ int main()
             return 0;
         }
 
-
-
         int input = 1;
+        if (sortInput == 3)
+        {
+            meas.compareStructures();
+            input = 0;
+        }
+        
         while (input != 0)
         {
             cout << "Please input one of the folowing to select the National Election Data, all Senatorial data, or a specific state:" << endl;
@@ -77,8 +83,8 @@ int main()
                 {
                     cout << "National Election Data:" << endl;
                     int* info = nationalInfoMap(sMap);
-                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: ", info[0], ((double)info[0]) / info[3], DataHandler::demElectoralVotes());
-                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: ", info[1], ((double)info[1]) / info[3], DataHandler::repElectoralVotes());
+                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d", info[0], ((double)info[0]) / info[3], DataHandler::demElectoralVotes());
+                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d", info[1], ((double)info[1]) / info[3], DataHandler::repElectoralVotes());
                     printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0", info[2], ((double)info[2]) / info[3]);
                     cout << endl;
                 }
@@ -88,8 +94,8 @@ int main()
                     nationalInfoAVL(sTree->root, info);
                     int total = info[0] + info[1] + info[2];
                     cout << "National Election Data:" << endl;
-                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: ", info[0], ((double)info[0]) / total, DataHandler::demElectoralVotes());
-                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: ", info[1], ((double)info[1]) / total, DataHandler::repElectoralVotes());
+                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d", info[0], ((double)info[0]) / total, DataHandler::demElectoralVotes());
+                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d", info[1], ((double)info[1]) / total, DataHandler::repElectoralVotes());
                     printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0", info[2], ((double)info[2]) / total);
                     cout << endl;
                 }
@@ -98,6 +104,7 @@ int main()
             {
                 if (sortInput == 1)
                 {
+                    auto start = chrono::high_resolution_clock::now();
                     for (auto j = sMap.begin(); j != sMap.end(); j++)
                     {
                         if (j->second.getDemSenator().compare("NONE") != 0 && j->second.getRepSenator().compare("NONE") != 0)
@@ -112,10 +119,22 @@ int main()
                             cout << "\nNo Senatorial Election Data available for " << j->second.getState() << "." << endl;
                         }
                     }
+                    auto end = chrono::high_resolution_clock::now();
+
+                    double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+                    time_taken *= 1e-9;
+                    
+                    DataHandler::st.timeMapTravers = time_taken;
                 }
                 else if (sortInput == 2)
                 {
+                    auto start = chrono::high_resolution_clock::now();
                     senatorialInfoAVL(sTree->root);
+                    auto end = chrono::high_resolution_clock::now();
+
+                    double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+                    time_taken *= 1e-9;
+                    DataHandler::st.timeTreeTravers = time_taken;
                 }
             }
             else if(input >= 1 && input <= 50)

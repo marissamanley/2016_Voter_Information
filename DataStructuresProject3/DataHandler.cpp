@@ -2,6 +2,7 @@
 
 unordered_map<string, States> DataHandler::stateMap;
 Tree* DataHandler::stateTree = new Tree();
+StoringData DataHandler::st;
 int DataHandler::demElectors;
 int DataHandler::repElectors;
 
@@ -71,9 +72,23 @@ void DataHandler::readCSV(string filePath, int offset) {
 			Districts district(districtNumber, numVoters, perDem, perRep, demRep, repRep);
 			state.districtMap[i] = district;
 		}
+		auto start = chrono::high_resolution_clock::now();
 		DataHandler::stateTree->root = DataHandler::stateTree->insert(DataHandler::stateTree->root, &state);
+		auto end = chrono::high_resolution_clock::now();
 
+		double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+		time_taken *= 1e-9;
+		
+		DataHandler::st.updateTimeTreeIns(time_taken);
+
+		start = chrono::high_resolution_clock::now();
 		stateMap[stateName] = state;
+		end = chrono::high_resolution_clock::now();
+
+		time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+		time_taken *= 1e-9;
+
+		DataHandler::st.updateTimeMapIns(time_taken);
 	}
 }
 

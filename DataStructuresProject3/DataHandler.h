@@ -4,6 +4,9 @@
 #include "Tree.h"
 #include "TreeNode.h"
 #include "Voter.h"
+#include <chrono>
+#include "TimeMeasure.h"
+#include "StoringData.h"
 using namespace std;
 /*
  * The purpose of this class is to initialize the data from the CSV file and store it within unordered_maps
@@ -36,6 +39,7 @@ public:
 	static void initData();
 	static unordered_map<string, States> stateMap;
     static Tree* stateTree;
+    static StoringData st;
     static int demElectoralVotes();
     static int repElectoralVotes();
     static int demElectors;
