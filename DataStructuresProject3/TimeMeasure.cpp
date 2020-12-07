@@ -15,7 +15,7 @@ void TimeMeasure::compareStructures()
        "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah",
        "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming" };
 
-	cout << "Comparing the times to search and traverse for the AVL tree and unordered_map" << endl;
+	cout << "Comparing the times to search and traverse for the AVL tree and unordered_map\n" << endl;
 
     int num = rand() % 50 + 1;
 
@@ -29,7 +29,7 @@ void TimeMeasure::compareStructures()
     double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
     time_taken *= 1e-9;
 
-    cout << "Time taken to search for state by AVL Tree: " << fixed << time_taken << setprecision(9);
+    cout << "Time taken to search for state by AVL Tree: " << fixed << setprecision(9) << time_taken ;
     cout << "sec\n" << endl;
 
     start = chrono::high_resolution_clock::now();
@@ -38,39 +38,46 @@ void TimeMeasure::compareStructures()
 
     end = chrono::high_resolution_clock::now();
 
-    time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
-    time_taken *= 1e-9;
+    double time_taken_two = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+    time_taken_two *= 1e-9;
 
-    cout << "Time taken to search for state by unordered_map: " << fixed << time_taken << setprecision(9);
+    
+    cout << "Time taken to search for state by unordered_map: " << fixed << setprecision(9) << time_taken_two ;
     cout << "sec\n" << endl;
 
-    cout << "Time taken to insert a state by AVL Tree: " << fixed << timeTreeInsert << setprecision(9);
+    cout << "Ratio of Search time of AVL tree to unordered_map: " << fixed << setprecision(2) << time_taken / time_taken_two  << "\n\n" << endl;
+
+    updateTimeTreeInsert(DataHandler::st.timeTreeIns);
+    updateTimeMapInsert(DataHandler::st.timeMapIns);
+    setTimeTreeTraversal(DataHandler::st.timeTreeTravers);
+    setTimeMapTraversal(DataHandler::st.timeMapTravers);
+
+    cout << "Time taken to insert a state by AVL Tree: " << fixed << setprecision(9) << timeTreeInsert ;
     cout << "sec\n" << endl;
 
-    cout << "Time taken to insert a state by unordered_map: " << fixed << timeMapInsert << setprecision(9);
+    cout << "Time taken to insert a state by unordered_map: " << fixed << setprecision(9) << timeMapInsert ;
     cout << "sec\n" << endl;
 
-    cout << "Time taken to traverse the AVL Tree: " << fixed << timeTreeTraversal << setprecision(9);
+    cout << "Ratio of Insertion time of AVL tree to unordered_map: " << fixed << setprecision(2) << timeTreeInsert / timeMapInsert  << "\n\n" << endl;
+
+    cout << setprecision(9);
+    cout << "Time taken to traverse the AVL Tree: " << fixed << setprecision(9) << timeTreeTraversal ;
     cout << "sec\n" << endl;
 
-    cout << "Time taken to traverse the unordered_map: " << fixed << timeMapTraversal << setprecision(9);
+    cout << "Time taken to traverse the unordered_map: " << fixed << setprecision(9) << timeMapTraversal ;
     cout << "sec\n" << endl;
+
+    cout << "Ratio of Traversal time of AVL tree to unordered_map: " << fixed << setprecision(2) << timeTreeTraversal / timeMapTraversal  << "\n\n" << endl;
 }
 
 void TimeMeasure::updateTimeTreeInsert(double t)
 {
-    if (t > timeTreeInsert)
-    {
-        timeTreeInsert = t;
-    }
+    timeTreeInsert = t;
 }
 
 void TimeMeasure::updateTimeMapInsert(double t)
 {
-    if (t > timeMapInsert)
-    {
-        timeMapInsert = t;
-    }
+     timeMapInsert = t;
 }
 
 void TimeMeasure::setTimeTreeTraversal(double t)

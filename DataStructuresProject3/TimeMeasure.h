@@ -1,10 +1,11 @@
 #pragma once
-#include "DataHandler.h";
-#include "States.h";
-#include "Districts.h";
-#include "Tree.h";
-#include "TreeNode.h";
 #include "DataHandler.h"
+#include "States.h"
+#include "Districts.h"
+#include "Tree.h"
+#include "TreeNode.h"
+#include "DataHandler.h"
+#include "StoringData.h"
 #include <chrono>
 using namespace std;
 

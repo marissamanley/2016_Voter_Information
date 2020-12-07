@@ -21,7 +21,7 @@ int main()
     DataHandler::initData();
     unordered_map<string, States>& sMap = DataHandler::stateMap;
     Tree* sTree = DataHandler::stateTree;
-    TimeMeasure meas = DataHandler::measure;
+    TimeMeasure meas = TimeMeasure();
     string presidentDem = "Joe Biden";
     string presidentRep = "Donald Trump";
 
@@ -124,7 +124,7 @@ int main()
                     double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
                     time_taken *= 1e-9;
                     
-                    meas.setTimeMapTraversal(time_taken);
+                    DataHandler::st.timeMapTravers = time_taken;
                 }
                 else if (sortInput == 2)
                 {
@@ -134,7 +134,7 @@ int main()
 
                     double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
                     time_taken *= 1e-9;
-                    meas.setTimeTreeTraversal(time_taken);
+                    DataHandler::st.timeTreeTravers = time_taken;
                 }
             }
             else if(input >= 1 && input <= 50)
