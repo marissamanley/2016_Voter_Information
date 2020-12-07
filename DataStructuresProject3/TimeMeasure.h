@@ -8,7 +8,11 @@
 #include "StoringData.h"
 #include <chrono>
 using namespace std;
-
+//  The function comparison class
+//* This function is used to get a time comparison between
+//* the unordered map and AVL tree. Time is measured for
+//* insertion, search, and traversal operations and then
+//* output.
 class TimeMeasure
 {
 public:

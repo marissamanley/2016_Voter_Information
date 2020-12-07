@@ -2,6 +2,7 @@
 #include "States.h"
 class TreeNode
 {
+    //the class for the AVL tree's node
     public:
         States state;
         TreeNode* left = nullptr;

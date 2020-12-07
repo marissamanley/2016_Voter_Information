@@ -78,7 +78,7 @@ void DataHandler::readCSV(string filePath, int offset) {
 			state.districtMap[i] = district;
 		}
 
-		//Used for time comparisons between AVL and hashmap insetions
+		//Used for time comparisons between AVL and hashmap insertions
 		auto start = chrono::high_resolution_clock::now();
 		DataHandler::stateTree->root = DataHandler::stateTree->insert(DataHandler::stateTree->root, &state);
 		auto end = chrono::high_resolution_clock::now();
@@ -122,7 +122,6 @@ void DataHandler::createVoters() {
 			for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
 				//generates what party the voter is voting for
 				Voter::party castVote = Voter::vote(curDistrict.getInitPercentDem(), curDistrict.getInitPercentRep(), curDistrict.getInitPercentOther());
-				//Insert into Splay tree here
 				switch (castVote)
 				{
 				case Voter::DEM:
@@ -138,7 +137,7 @@ void DataHandler::createVoters() {
 					break;
 				}
 			}
-			// Adds the votes to the state object after every district
+			// Adds the votes to the state object after every district. Done for both AVL state and map state
 			curTreeState->state.addDemVotes(demCount, i);
 			curTreeState->state.addRepVotes(repCount, i);
 			curTreeState->state.addOtherVotes(otherCount, i);
