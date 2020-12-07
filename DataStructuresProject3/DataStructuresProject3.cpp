@@ -25,15 +25,17 @@ int main()
     string presidentDem = "Joe Biden";
     string presidentRep = "Donald Trump";
 
+    //The array of all state names, accessed throughout main() for output
     string states[50] = { "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
          "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
         "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
         "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
         "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah",
         "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming" };
+   
     int sortInput = -1;
 
-    while (sortInput != 0) {
+    while (sortInput != 0) { //Continues the program until user inputs 0 to exit data search
         cout << "Welcome to the 539 Election Data Search!" << endl;
         cout << "\nPlease input one of the following to select the method by which the data will be accessed:" << endl;
         cout << "[0] Exit 539 Election Data Search" << endl;
@@ -43,9 +45,9 @@ int main()
 
 
         cout << "Selection: ";
-        cin >> sortInput;
+        cin >> sortInput; 
 
-        if (sortInput == 0)
+        if (sortInput == 0) //Ends program 
         {
             cout << "Thank you for using 539 Election Data Search!" << endl;
             return 0;
@@ -58,7 +60,7 @@ int main()
             input = 0;
         }
         
-        while (input != 0)
+        while (input != 0) //Loops through State Search unti user exits to Data Access Method Selection
         {
             cout << "Please input one of the folowing to select the National Election Data, all Senatorial data, or a specific state:" << endl;
             cout << "[0] Return to Data Access Method Selection" << endl;
@@ -75,11 +77,13 @@ int main()
     [8] Deleware    | [18] Loisiana | [28] Nevada        | [38] Pennsylvania   | [48] West Virginia\n\
     [9] Florida     | [19] Maine    | [29] New Hampshire | [39] Rhode Island   | [49] Wisconsin\n\
     [10] Georgia    | [20] Maryland | [30] New Jersey    | [40] South Carolina | [50] Wyoming\n\n";
+
             cout << "Selection: ";
             cin >> input;
-            if (input == 51)
+
+            if (input == 51) //Selection that outputs National Election Data
             {
-                if (sortInput == 1)
+                if (sortInput == 1) //Accesses data through the unordered map
                 {
                     cout << "National Election Data:" << endl;
                     int* info = nationalInfoMap(sMap);
@@ -88,7 +92,7 @@ int main()
                     printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0", info[2], ((double)info[2]) / info[3]);
                     cout << endl;
                 }
-                else
+                else //Accesses data through the AVL tree
                 {
                     int info[3];
                     nationalInfoAVL(sTree->root, info);
@@ -100,9 +104,9 @@ int main()
                     cout << endl;
                 }
             }
-            else if (input == 52)
+            else if (input == 52) //Selection that outputs all Senatorial Data
             {
-                if (sortInput == 1)
+                if (sortInput == 1) //Accesses data through the unordered map
                 {
                     auto start = chrono::high_resolution_clock::now();
                     for (auto j = sMap.begin(); j != sMap.end(); j++)
@@ -126,10 +130,10 @@ int main()
                     
                     DataHandler::st.timeMapTravers = time_taken;
                 }
-                else if (sortInput == 2)
+                else if (sortInput == 2)//Accessed data through the AVL tree
                 {
                     auto start = chrono::high_resolution_clock::now();
-                    senatorialInfoAVL(sTree->root);
+                    senatorialInfoAVL(sTree->root); //Outputs all Senatorial Data for all US states from the AVL tree
                     auto end = chrono::high_resolution_clock::now();
 
                     double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
@@ -137,17 +141,17 @@ int main()
                     DataHandler::st.timeTreeTravers = time_taken;
                 }
             }
-            else if(input >= 1 && input <= 50)
+            else if(input >= 1 && input <= 50) //Selection for one of the 50 US States
             {
                 int selectedState = input - 1;
                 States state;
                 TreeNode* stateNode;
-                if (sortInput == 1)
-                    state = sMap[states[selectedState]];
+                if (sortInput == 1) 
+                    state = sMap[states[selectedState]]; //State object initialized based on user input from the unordered map
                 else
                 {
                     stateNode = sTree->search(sTree->root, states[selectedState]);
-                    state = stateNode->state;
+                    state = stateNode->state; //State object initialized based on user input from the AVL tree
                 }
 
                 cout << "State: " << state.getState() << endl;
@@ -155,7 +159,7 @@ int main()
                 cout << "Number of electoral votes: " << state.getElectoralVotes() << endl;
 
                 int input2 = -1;
-                while (input2 != 0) {
+                while (input2 != 0) { //Loops through State Data selection until user inputs to return to State selection
                     cout << "\nPlease input one of the following to select the data for the state " << state.getState() << ":" << endl;
                     cout << "[0] Return to State selection" << endl;
                     cout << "[1] National Election data" << endl;
@@ -165,7 +169,7 @@ int main()
                     cout << "Selection: ";
 
                     cin >> input2;
-                    if (input2 == 1)
+                    if (input2 == 1) //Outputs National Election data based on the selected state
                     {
                         cout << "National Election Data for " << state.getState() << ": " << endl;
                         printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", presidentDem.c_str(), state.getDemPresVotes(), state.getPercent(0));
@@ -173,7 +177,7 @@ int main()
                         printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", state.getOtherPresVotes(), state.getPercent(2));
                     }
 
-                    else if (input2 == 2)
+                    else if (input2 == 2) //Outputs Senatorial Election data based on the selected state
                     {
                         if (state.getDemSenator().compare("NONE") != 0 && state.getRepSenator().compare("NONE") != 0)
                         {
@@ -188,12 +192,12 @@ int main()
                         }
                     }
 
-                    else if (input2 == 3)
+                    else if (input2 == 3) //Outputs all District Election data based on the selected state
                     {
                         state.districtInfo();
                     }
 
-                    else if (input2 == 4)
+                    else if (input2 == 4) //Allows for user to select specific District data based on the selected state
                     {
                         int distInput = 1;
                         cout << "There are " << state.getNumDistricts() << " congressional districts in the state of " << state.getState() << ". Input number for a district. Press 0 to exit District search:" << endl;
@@ -223,7 +227,7 @@ int* nationalInfoMap(unordered_map<string, States>& sMap)
     int othVotes = 0;
     int total = 0;
     int info[4];
-    for (auto i = sMap.begin(); i != sMap.end(); i++)
+    for (auto i = sMap.begin(); i != sMap.end(); i++) //Iterates through the unordered map of states to acquire National Election data
     {
         demVotes += i->second.getDemPresVotes();
         repVotes += i->second.getRepPresVotes();
@@ -239,7 +243,7 @@ int* nationalInfoMap(unordered_map<string, States>& sMap)
 
 }
 
-void nationalInfoAVL(TreeNode* root, int* info)
+void nationalInfoAVL(TreeNode* root, int* info) //Iterates through the AVL tree of state Nodes to acquire National Election data
 {
 	if (root == nullptr)
 		return;
@@ -253,7 +257,7 @@ void nationalInfoAVL(TreeNode* root, int* info)
 	nationalInfoAVL(root->right, info);
 }
 
-void senatorialInfoAVL(TreeNode* root)
+void senatorialInfoAVL(TreeNode* root) //Iterates through the unordered map of states to acquire Senatorial Election data
 {
     if (root == nullptr)
         return;
