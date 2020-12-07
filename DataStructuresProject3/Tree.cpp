@@ -155,7 +155,7 @@ TreeNode* Tree::search(TreeNode* root, string statename)
 	}
 }
 
-void Tree::printInorder(TreeNode* root, std::string& s) //This might be used
+void Tree::printInorder(TreeNode* root, std::string& s)
 {
 	//base condition
 	if (root == nullptr)

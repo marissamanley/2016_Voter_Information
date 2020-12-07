@@ -257,7 +257,7 @@ void nationalInfoAVL(TreeNode* root, int* info) //Iterates through the AVL tree 
 	nationalInfoAVL(root->right, info);
 }
 
-void senatorialInfoAVL(TreeNode* root) //Iterates through the unordered map of states to acquire Senatorial Election data
+void senatorialInfoAVL(TreeNode* root) //Iterates through the AVL Tree of states to acquire Senatorial Election data
 {
     if (root == nullptr)
         return;
