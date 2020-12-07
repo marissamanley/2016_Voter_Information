@@ -6,6 +6,7 @@ Tree::Tree()
 }
 int Tree::compareStateNames(string one, string two)
 {
+	//function to compare statenames
 	if (one.compare(two) < 0)
 	{
 		return -1;
@@ -21,6 +22,7 @@ int Tree::compareStateNames(string one, string two)
 }
 TreeNode* Tree::insert(TreeNode* root, States *s)
 {
+	//insertion function, performs balancing after node gets placed
 	if (root == nullptr)
 	{
 		TreeNode* node = new TreeNode(s);
@@ -44,7 +46,7 @@ TreeNode* Tree::insert(TreeNode* root, States *s)
 	//begin balancing by obtaining the balance value of the current node
 	int b = balanceValue(root);
 
-	//based off of the relationship of the balancevalue and the IDs, perform the appropriate rotation
+	//based off of the relationship of the balancevalue and the statenames, perform the appropriate rotation
 	if (b < -1 && compareStateNames(s->getState(),root->right->state.getState()) == 1)
 	{
 		return leftRotate(root);
@@ -85,14 +87,14 @@ TreeNode* Tree::remove(TreeNode* root, string statename)
 
 TreeNode* Tree::removeStuff(TreeNode* root, string statename)
 {
-	//base condition that prints unsuccessful if ID not found
+	//base condition that prints unsuccessful if statename not found
 	if (root == nullptr)
 	{
 		std::cout << "unsuccessful" << std::endl;
 		return root;
 	}
 
-	//compares ID to current node's ID and recursively checks next nodes
+	//compares statename to current node's statename and recursively checks next nodes
 	if (compareStateNames(statename, root->state.getState()) == -1)
 	{
 		root->left = removeStuff(root->left, statename);
@@ -111,14 +113,12 @@ TreeNode* Tree::removeStuff(TreeNode* root, string statename)
 		{
 			TreeNode* t = root->left;
 			delete root;
-			//std::cout << "successful" << std::endl;
 			return t;
 		}
 		else if (root->left == nullptr)
 		{
 			TreeNode* t = root->right;
 			delete root;
-			//std::cout << "successful" << std::endl;
 			return t;
 		}
 		//This case is for nodes that have two children
@@ -136,6 +136,7 @@ TreeNode* Tree::removeStuff(TreeNode* root, string statename)
 
 TreeNode* Tree::search(TreeNode* root, string statename)
 {
+	//searches the tree for the node with the input statename
 	if (root != nullptr)
 	{
 		if (compareStateNames(statename, root->state.getState()) == 0)
@@ -155,8 +156,9 @@ TreeNode* Tree::search(TreeNode* root, string statename)
 	}
 }
 
-void Tree::printInorder(TreeNode* root, std::string& s) //This might be used
+void Tree::printInorder(TreeNode* root, std::string& s)
 {
+	//this is a function for testing
 	//base condition
 	if (root == nullptr)
 	{

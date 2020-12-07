@@ -1,6 +1,10 @@
 #pragma once
 #include "TreeNode.h"
 using namespace std;
+// The AVL Tree class
+//* This class is the implementation of the AVL tree used as the secondary storage
+//* option. The tree mostly performs insertion, searches, and traversals, but it also 
+//* has the capability to remove if needed. Also performs self balancing.
 class Tree
 {
 public:
