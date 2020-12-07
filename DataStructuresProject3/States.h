@@ -18,6 +18,13 @@ using namespace std;
  *  - Number of districts within the state
  *  - Names of the senators running for office (have not accounted for multiple senate races yet)
  *  - Number of votes the state has in the electoral college
+ *	- Names for each candidate
+ *  - Number of cast votes for this state
+ * 
+ * districtMap:
+ *  - Each state holds their district within a unordered map
+ *	- Key: district number
+ *	- Value: District object
  */
 //hi
 
