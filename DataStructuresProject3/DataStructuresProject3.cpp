@@ -88,7 +88,7 @@ int main()
                     cout << "National Election Data:" << endl;
                     int info[4];
                     nationalInfoMap(sMap, info);
-                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[0], ((double)info[0]) / info[3] * 100, DataHandler::demElectoralVotes()+3);
+                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[0], ((double)info[0]) / info[3] * 100, DataHandler::demElectoralVotes());
                     printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[1], ((double)info[1]) / info[3] * 100, DataHandler::repElectoralVotes());
                     printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n", info[2], ((double)info[2]) / info[3] * 100);
                     cout << endl;
@@ -99,7 +99,7 @@ int main()
                     nationalInfoAVL(sTree->root, info);
                     int total = info[0] + info[1] + info[2];
                     cout << "National Election Data:" << endl;
-                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[0], ((double)info[0]) / total * 100, DataHandler::demElectoralVotes()+3);
+                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[0], ((double)info[0]) / total * 100, DataHandler::demElectoralVotes());
                     printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[1], ((double)info[1]) / total * 100, DataHandler::repElectoralVotes());
                     printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n", info[2], ((double)info[2]) / total) * 100;
                     cout << endl;
