@@ -39,7 +39,6 @@ TreeNode* Tree::insert(TreeNode* root, States *s)
 	}
 	else
 	{
-		std::cout << "unsuccessful" << std::endl;
 		return root;
 	}
 
