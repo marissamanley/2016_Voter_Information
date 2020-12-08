@@ -178,7 +178,7 @@ void DataHandler::calculateElectoralVotes() {
 
 // These are getter functions for the elector votes
 int DataHandler::demElectoralVotes() {
-	return demElectors;
+	return demElectors + 3;
 }
 
 int DataHandler::repElectoralVotes() {
