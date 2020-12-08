@@ -12,7 +12,7 @@
 using namespace std;
 
 
-int* nationalInfoMap(unordered_map<string, States>& sMap);
+void nationalInfoMap(unordered_map<string, States>& sMap, int* info);
 void senatorialInfoAVL(TreeNode* root);
 void nationalInfoAVL(TreeNode* root, int* info);
 
@@ -86,21 +86,22 @@ int main()
                 if (sortInput == 1) //Accesses data through the unordered map
                 {
                     cout << "National Election Data:" << endl;
-                    int* info = nationalInfoMap(sMap);
-                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d", info[0], ((double)info[0]) / info[3], DataHandler::demElectoralVotes());
-                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d", info[1], ((double)info[1]) / info[3], DataHandler::repElectoralVotes());
-                    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0", info[2], ((double)info[2]) / info[3]);
+                    int info[4];
+                    nationalInfoMap(sMap, info);
+                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[0], ((double)info[0]) / info[3] * 100, DataHandler::demElectoralVotes()+3);
+                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[1], ((double)info[1]) / info[3] * 100, DataHandler::repElectoralVotes());
+                    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n", info[2], ((double)info[2]) / info[3] * 100);
                     cout << endl;
                 }
                 else //Accesses data through the AVL tree
                 {
-                    int info[3];
+                    int info[3] = { 0 };
                     nationalInfoAVL(sTree->root, info);
                     int total = info[0] + info[1] + info[2];
                     cout << "National Election Data:" << endl;
-                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d", info[0], ((double)info[0]) / total, DataHandler::demElectoralVotes());
-                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d", info[1], ((double)info[1]) / total, DataHandler::repElectoralVotes());
-                    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0", info[2], ((double)info[2]) / total);
+                    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[0], ((double)info[0]) / total * 100, DataHandler::demElectoralVotes()+3);
+                    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[1], ((double)info[1]) / total * 100, DataHandler::repElectoralVotes());
+                    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n", info[2], ((double)info[2]) / total) * 100;
                     cout << endl;
                 }
             }
@@ -220,13 +221,12 @@ int main()
 
 
 
-int* nationalInfoMap(unordered_map<string, States>& sMap)
+void nationalInfoMap(unordered_map<string, States>& sMap, int* info)
 {
     int demVotes = 0;
     int repVotes = 0;
     int othVotes = 0;
     int total = 0;
-    int info[4];
     for (auto i = sMap.begin(); i != sMap.end(); i++) //Iterates through the unordered map of states to acquire National Election data
     {
         demVotes += i->second.getDemPresVotes();
@@ -239,7 +239,6 @@ int* nationalInfoMap(unordered_map<string, States>& sMap)
     info[2] = othVotes;
     info[3] = total;
 
-    return info;
 
 }
 
