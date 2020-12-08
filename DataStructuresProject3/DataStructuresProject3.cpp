@@ -62,7 +62,7 @@ int main()
         
         while (input != 0) //Loops through State Search unti user exits to Data Access Method Selection
         {
-            cout << "Please input one of the folowing to select the National Election Data, all Senatorial data, or a specific state:" << endl;
+            cout << "\nPlease input one of the folowing to select the National Election Data, all Senatorial data, or a specific state:" << endl;
             cout << "[0] Return to Data Access Method Selection" << endl;
             cout << "[51] National Election Data " << endl;
             cout << "[52] All Senatorial Election Data\n" << endl;
@@ -262,12 +262,17 @@ void senatorialInfoAVL(TreeNode* root) //Iterates through the AVL Tree of states
         return;
 
     senatorialInfoAVL(root->left);
-
-    cout << "\nSenatorial Election Data for " << root->state.getState() << ": " << endl;
-    printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getDemSenator().c_str(), root->state.getDemSenVotes(), root->state.getPercent(3));
-    printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getRepSenator().c_str(), root->state.getRepSenVotes(), root->state.getPercent(4));
-    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getOtherSenVotes(), root->state.getPercent(5));
-
+    if (root->state.getDemSenator().compare("NONE") != 0 && root->state.getRepSenator().compare("NONE") != 0)
+    {
+        cout << "\nSenatorial Election Data for " << root->state.getState() << ": " << endl;
+        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getDemSenator().c_str(), root->state.getDemSenVotes(), root->state.getPercent(3));
+        printf("Candidate Name: %-25s | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getRepSenator().c_str(), root->state.getRepSenVotes(), root->state.getPercent(4));
+        printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% \n", root->state.getOtherSenVotes(), root->state.getPercent(5));
+    }
+    else
+    {
+        cout << "\nNo Senatorial Election Data available for " << root->state.getState() << "." << endl;
+    }
     senatorialInfoAVL(root->right);
 }
 
