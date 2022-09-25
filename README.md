@@ -213,7 +213,6 @@ measuring functions from ``std::chrono``.
 ## References:
 Associated Press, via Google
 https://www.ap.org/media-center/understanding-the-election
-https://www.google.com/search?q=2020+election+results&oq=2020+el&aqs=chrome.0.0i433i45
-7j69i57j0i433l3j69i60l3.1975j0j7&sourceid=chrome&ie=UTF-8
+https://www.google.com/search?q=2020+election+results&oq=2020+el&aqs=chrome.0.0i433i457j69i57j0i433l3j69i60l3.1975j0j7&sourceid=chrome&ie=UTF-8
 United States Election Project
 http://www.electproject.org/2020g
