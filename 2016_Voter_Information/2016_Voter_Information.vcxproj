@@ -22,8 +22,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{0a754907-4e9a-4c42-80be-1895b3873f6b}</ProjectGuid>
-    <RootNamespace>DataStructuresProject3</RootNamespace>
+    <RootNamespace>2016_Voter_Information</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>2016_Voter_Information</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,21 +141,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataHandler.cpp" />
-    <ClCompile Include="DataStructuresProject3.cpp" />
-    <ClCompile Include="Districts.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Districts.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="States.cpp" />
     <ClCompile Include="StoringData.cpp" />
     <ClCompile Include="TimeMeasure.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="TreeNode.cpp" />
-    <ClCompile Include="Voter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataHandler.h" />
     <ClInclude Include="Districts.h" />
-    <ClInclude Include="main.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="StoringData.h" />

@@ -5,8 +5,7 @@
  * This class generates what party the voter casts their vote to based on the party represenation of the district
  */
 
-class Voter
-{
+class Voter {
 public:
 	enum party {DEM, REP, THIRD};
 	Voter() {};

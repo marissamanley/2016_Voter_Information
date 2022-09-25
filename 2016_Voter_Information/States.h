@@ -9,7 +9,6 @@
 #include <iostream>
 #include "Districts.h"
 #include "Voter.h"
-using namespace std;
 
 /*
  * This class hold information about each state. The information held is:
@@ -26,17 +25,13 @@ using namespace std;
  *	- Key: district number
  *	- Value: District object
  */
-//hi
-
-
-class States
-{
+class States {
 private:
-	string state;
+	std::string state;
 	int voterCapacity = 0;
 	int numDistricts = 0;
-	string demSenator;
-	string repSenator;
+	std::string demSenator;
+	std::string repSenator;
 	int electoralVotes = 0;
 	int democratPresVotes = 0;
 	int republicanPresVotes = 0;
@@ -46,14 +41,13 @@ private:
 	int otherSenVotes = 0;
 
 public:
-	unordered_map<int, Districts> districtMap;
-
+	std::unordered_map<int, Districts> districtMap;
 	States();
-	States(string state, int voterCapacity, int numDistricts, string demSenator, string repSenator, int electoralVotes);
+	States(std::string state, int voterCapacity, int numDistricts, std::string demSenator, std::string repSenator, int electoralVotes);
 	States(const States& s);
-	string getState();
-	string getDemSenator();
-	string getRepSenator();
+	std::string getState();
+	std::string getDemSenator();
+	std::string getRepSenator();
 
 	int getVoterCapacity();
 	int getNumDistricts();

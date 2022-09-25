@@ -1,8 +1,7 @@
 #pragma once
 #include <random>
 #include <ctime>
-class Random
-{
+class Random {
 private:
 	static std::mt19937 random;
 public:

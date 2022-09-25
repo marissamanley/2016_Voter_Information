@@ -1,11 +1,11 @@
 #include "DataHandler.h"
+#include <unordered_map>
 
-unordered_map<string, States> DataHandler::stateMap;
+std::unordered_map<std::string, States> DataHandler::stateMap;
 Tree* DataHandler::stateTree = new Tree();
 StoringData DataHandler::st;
 int DataHandler::demElectors;
 int DataHandler::repElectors;
-
 
 /*
  * Reads the District_map CSV file to form the stateMap and DistrictMap structures
@@ -15,9 +15,9 @@ int DataHandler::repElectors;
  * States are in alphabetical order in csv
  **
  */
-void DataHandler::readCSV(string filePath, int offset) {
-	ifstream file(filePath);
-	string lineFromFile;
+void DataHandler::readCSV(std::string filePath, int offset) {
+	std::ifstream file(filePath);
+	std::string lineFromFile;
 
 	/*
 	 * Offset brings you to the state that you want to visit.
@@ -29,72 +29,62 @@ void DataHandler::readCSV(string filePath, int offset) {
 	}
 
 	while (getline(file, lineFromFile)) {
-		istringstream streamFromAString(lineFromFile);
+		std::istringstream streamFromAString(lineFromFile);
 
-		string stateName;
-		getline(streamFromAString, stateName, ',');
+		std::string stateName, demRep, repRep, voters, electoralVotes_, numDistrics_;
+		std::getline(streamFromAString, stateName, ',');
 
-		string demRep;
-		getline(streamFromAString, demRep, ',');
-
-		string repRep;
-		getline(streamFromAString, repRep, ',');
-
-		string voters;
-		getline(streamFromAString, voters, ',');
+		std::getline(streamFromAString, demRep, ',');
+		std::getline(streamFromAString, repRep, ',');
+		std::getline(streamFromAString, voters, ',');
 		int numVoters = stoi(voters);
-
-		string electoralVotes_;
-		getline(streamFromAString, electoralVotes_, ',');
+		std::getline(streamFromAString, electoralVotes_, ',');
 		int electoralVotes = stoi(electoralVotes_);
-
-		string numDistrics_;
-		getline(streamFromAString, numDistrics_, ',');
+		std::getline(streamFromAString, numDistrics_, ',');
 		int numDistricts = stoi(numDistrics_);
 
 		States state(stateName, numVoters, numDistricts, demRep, repRep, electoralVotes);
 		
 		for (int i = 1; i < numDistricts+1; i++) {
-			
-			string districtNumber_;
-			getline(streamFromAString, districtNumber_, ',');
+			std::string districtNumber_;
+			std::getline(streamFromAString, districtNumber_, ',');
 			int districtNumber = stoi(districtNumber_);
 
-			getline(streamFromAString, voters, ',');
+			std::getline(streamFromAString, voters, ',');
 			numVoters = stoi(voters);
 
-			getline(streamFromAString, demRep, ',');
-			getline(streamFromAString, repRep, ',');
+			std::getline(streamFromAString, demRep, ',');
+			std::getline(streamFromAString, repRep, ',');
 
-			string percentDem;
-			getline(streamFromAString, percentDem, ',');
+			std::string percentDem;
+			std::getline(streamFromAString, percentDem, ',');
 			float perDem = stof(percentDem);
 
-			string percentRep;
-			getline(streamFromAString, percentRep, ',');
+			std::string percentRep;
+			std::getline(streamFromAString, percentRep, ',');
 			float perRep = stof(percentRep);
 
 			Districts district(districtNumber, numVoters, perDem, perRep, demRep, repRep);
 			state.districtMap[i] = district;
 		}
 
-		//Used for time comparisons between AVL and hashmap insertions
-		auto start = chrono::high_resolution_clock::now();
+		//Used for time comparisons between AVL and unordered_map insertions
+		//AVL Tree
+		auto start = std::chrono::high_resolution_clock::now();
 		DataHandler::stateTree->root = DataHandler::stateTree->insert(DataHandler::stateTree->root, &state);
-		auto end = chrono::high_resolution_clock::now();
+		auto end = std::chrono::high_resolution_clock::now();
 
-		double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+		double time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 		time_taken *= 1e-9;
-		
 		DataHandler::st.updateTimeTreeIns(time_taken);
 
-		start = chrono::high_resolution_clock::now();
+		//Unordered_map
+		start = std::chrono::high_resolution_clock::now();
 		stateMap[stateName] = state;
-		end = chrono::high_resolution_clock::now();
+		end = std::chrono::high_resolution_clock::now();
 
-		time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+		time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 		time_taken *= 1e-9;
-
 		DataHandler::st.updateTimeMapIns(time_taken);
 	}
 }
@@ -103,7 +93,7 @@ void DataHandler::readCSV(string filePath, int offset) {
 /*
  * This function loops through every state and every district within that state
  * It calls upon the voter class to generate a every voter based on party percentages within that district
- * The add vote methods are then called upon to store this voting data within each state
+ * The addvote methods are then called upon to store this voting data within each state
  */
 void DataHandler::createVoters() {
 	auto iter = DataHandler::stateMap.begin();
@@ -120,10 +110,9 @@ void DataHandler::createVoters() {
 			int otherCount = 0;
 			//loops through the number of voters within that district
 			for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
-				//generates what party the voter is voting for
+				//generates voter party
 				Voter::party castVote = Voter::vote(curDistrict.getInitPercentDem(), curDistrict.getInitPercentRep(), curDistrict.getInitPercentOther());
-				switch (castVote)
-				{
+				switch (castVote) {
 				case Voter::DEM:
 					demCount++;
 					break;
@@ -161,8 +150,7 @@ void DataHandler::calculateElectoralVotes() {
 	for (iter; iter != DataHandler::stateMap.end(); iter++) {
 		auto& curState = iter->second;
 		Voter::party winner = curState.determineWinner();
-		switch (winner)
-		{
+		switch (winner) {
 		case Voter::DEM:
 			demElectors += curState.getElectoralVotes();
 			break;

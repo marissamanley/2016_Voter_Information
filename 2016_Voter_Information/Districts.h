@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-using namespace std;
 
 /*
  * This class holds information about each district. The information helds is:
@@ -16,8 +15,7 @@ using namespace std;
  * This is balanced by each district having its own number of voters, with its size related to the districts actual size
  */
 
-class Districts
-{
+class Districts {
 private:
 	int district;
 	int voterCapacity = 0;
@@ -33,12 +31,12 @@ private:
 	float initPercentDem = 0.0;
 	float initPercentRep = 0.0;
 	float initPercentOther = 0.0;
-	string democrat;
-	string republican;
+	std::string democrat;
+	std::string republican;
 
 public:
 	Districts() {};
-	Districts(int district, int voterCapacity, float percentDem, float percentRep, string democratRep, string republicanRep);
+	Districts(int district, int voterCapacity, float percentDem, float percentRep, std::string democratRep, std::string republicanRep);
  
 	int getDistrict();
 	void setDistrict(int district);
@@ -86,11 +84,11 @@ public:
 	float getInitPercentOther();
 	void setInitPercentOther(float percentOther);
 
-	string getDemocrat();
-	void setDemocrat(string dem);
+	std::string getDemocrat();
+	void setDemocrat(std::string dem);
 
-	string getRepublican();
-	void setRepublican(string rep);
+	std::string getRepublican();
+	void setRepublican(std::string rep);
 
 	float getPercent(int num);
 };
