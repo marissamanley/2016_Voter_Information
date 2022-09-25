@@ -92,9 +92,9 @@ level, and showing all the District data at the state level.
 
 
 ## Complexity Analysis
-*traversal of Unordered Map to get all senatorial results*
-  Worst case: O(S), where S is the number of U.S. states
-  This method traverses the Unordered Map to access all senatorial results
+*traversal of Unordered Map to get all senatorial results*  
+Worst case: O(S), where S is the number of U.S. states  
+This method traverses the Unordered Map to access all senatorial results
 
 *insertion of state into Unordered Map*
 
