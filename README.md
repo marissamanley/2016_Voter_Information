@@ -96,128 +96,84 @@ level, and showing all the District data at the state level.
 Worst case: O(S), where S is the number of U.S. states  
 This method traverses the Unordered Map to access all senatorial results
 
-*insertion of state into Unordered Map*
-
-Worst case: O(1)
-
+*insertion of state into Unordered Map*  
+Worst case: O(1)  
 This method inserts a state into the Unordered Map
 
-``void nationalInfoMap(unordered_map<string, States>& sMap, int* info)``
-
-Worst case: O(S), where S is the number of U.S. States
-
+``void nationalInfoMap(unordered_map<string, States>& sMap, int* info)``  
+Worst case: O(S), where S is the number of U.S. States  
 This method traverses the unordered map of states to access the national data from each state
 
-``void senatorialInfoAVL(TreeNode* root)``
-
-Worst case: O(S) where S is the number of U.S. States
-
+``void senatorialInfoAVL(TreeNode* root)``  
+Worst case: O(S) where S is the number of U.S. States  
 This method traverses the AVL tree of states to access the senatorial data from each state
 
-``void nationalInfoAVL(TreeNode* root, int* info)``
-
-Worst case: O(S) where S is the number of U.S. States
-
+``void nationalInfoAVL(TreeNode* root, int* info)``  
+Worst case: O(S) where S is the number of U.S. States  
 This method traverses the AVL tree of states to access the national data from each state
 
-``void DataHandler::createVoters()``
-
-Worst case: O(S * D * V), where S is the number of U.S. States, D is the number of
-
-Districts in a given State, and V is the number of votes in a given District
-
-This method iterates through the total number of voters in very district in every state to generate
-
+``void DataHandler::createVoters()``  
+Worst case: O(S * D * V), where S is the number of U.S. States, D is the number of  
+Districts in a given State, and V is the number of votes in a given District  
+This method iterates through the total number of voters in very district in every state to generate  
 the votes to be inserted in either the AVL tree or the Unordered Map
 
-``void DataHandler::initData()``
-
-Worst case: O(1)
-
-This method calls the readCSV() function, the createVoters(function), and the
-
+``void DataHandler::initData()``  
+Worst case: O(1)  
+This method calls the readCSV() function, the createVoters(function), and the  
 calculateElectoralVotes() function
 
-``void DataHandler::calculateElectoralVotes()``
-
-Worst case: O(S), where S is the number of U.S. States
-
+``void DataHandler::calculateElectoralVotes()``  
+Worst case: O(S), where S is the number of U.S. States  
 This method traverses the unordered map of states to gather all the state electoral vote data
 
-``void DataHandler::readCSV(string filePath, int offset)``
-
-Worst case: O( (S * D) +O) , where S is the number of U.S. States, D is the number of
-
-Districts in a given state, and O is the value for the offset, which is the number of lines
-
+``void DataHandler::readCSV(string filePath, int offset)``  
+Worst case: O( (S * D) +O) , where S is the number of U.S. States, D is the number of  
+Districts in a given state, and O is the value for the offset, which is the number of lines  
 that need to be ignored while reading the .csv file
 
-``void States::districtInfo()``
-
-Worst case: O(D), where D is the number of Districts in a given State
-
+``void States::districtInfo()``  
+Worst case: O(D), where D is the number of Districts in a given State  
 This method iterates through all the districts in a state and outputs the relevant district data
 
-``TreeNode* Tree::search(TreeNode* root, string statename)``
-
-Worst case: O(log(S)), where S is the number of U.S. States
-
+``TreeNode* Tree::search(TreeNode* root, string statename)``  
+Worst case: O(log(S)), where S is the number of U.S. States  
 This method searches the AVL tree using the state name and returns the state TreeNode*
 
-``TreeNode* Tree::insert(TreeNode* root, States *s)``
-
-Worst case: O(log(S)), where S is the number of U.S. States
-
+``TreeNode* Tree::insert(TreeNode* root, States *s)``  
+Worst case: O(log(S)), where S is the number of U.S. States  
 This method inserts a state TreeNode* into the AVL tree and calls methods to balance the tree
 
-``int Tree::height(TreeNode* root)``
-
-Worst case: O(S), where S is the number of U.S. States
-
+``int Tree::height(TreeNode* root)``  
+Worst case: O(S), where S is the number of U.S. States  
 This method returns the height of the TreeNode* in the parameter
 
-``int Tree::balanceValue(TreeNode* root)``
-
-Worst case: O(1)
-
-This method returns the number of the balance value, which is used to determine if the tree
-
+``int Tree::balanceValue(TreeNode* root)``  
+Worst case: O(1)  
+This method returns the number of the balance value, which is used to determine if the tree  
 needs to be balanced based on the recent insertion/deletion
 
-``TreeNode* Tree::leftRotate(TreeNode* root)``
-
-Worst case: O(1)
-
+``TreeNode* Tree::leftRotate(TreeNode* root)``  
+Worst case: O(1)  
 This method rotates the AVL tree left at the given root TreeNode*
 
-``TreeNode* Tree::rightRotate(TreeNode* root)``
-
-Worst case: O(1)
-
+``TreeNode* Tree::rightRotate(TreeNode* root)``  
+Worst case: O(1)  
 This method rotates the AVL tree right at the given root TreeNode*
 
-``TreeNode* Tree::leftRightRotate(TreeNode* root)``
-
-Worst case: O(1)
-
+``TreeNode* Tree::leftRightRotate(TreeNode* root)``  
+Worst case: O(1)  
 This method rotates the AVL tree left and then right at the given root TreeNode*
 
-``TreeNode* Tree::rightLeftRotate(TreeNode* root)``
-
-Worst case: O(1)
-
+``TreeNode* Tree::rightLeftRotate(TreeNode* root)``  
+Worst case: O(1)  
 This method rotates the AVL tree right and then left at the given root TreeNode*
 
-``void TimeMeasure::compareStructures()``
-
-Worst case: O(1)
-
-This method calls the unordered map and AVL tree search functions and outputs the time
-
-elapsed for each, and then also outputs the time elapsed for the insertion and traversal
-
-operations for each structure. In addition, it does a quick ratio calculation for each type of
-
+``void TimeMeasure::compareStructures()``  
+Worst case: O(1)  
+This method calls the unordered map and AVL tree search functions and outputs the time  
+elapsed for each, and then also outputs the time elapsed for the insertion and traversal  
+operations for each structure. In addition, it does a quick ratio calculation for each type of  
 operation.
 
 ## Performance Comparison of AVL Tree and Unordered Map
