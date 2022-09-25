@@ -100,7 +100,7 @@ This method traverses the Unordered Map to access all senatorial results
 Worst case: O(1)  
 This method inserts a state into the Unordered Map
 
-``void nationalInfoMap(unordered_map<string, States>& sMap, int* info)``  
+``void nationalInfoMap()``  
 Worst case: O(S), where S is the number of U.S. States  
 This method traverses the unordered map of states to access the national data from each state
 
