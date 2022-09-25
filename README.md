@@ -54,13 +54,6 @@ implemented in the library as a Hashmap, it allows us to get a comparison of per
 AVL Tree to a Hashmap.
 
 ## Distribution of Responsibility and Roles
-Marcus Elosegui's main tasks revolved around implementing the code that would create the
-initial states and districts and generate the voters, as well as filling out the .csv file used. He
-created and filled out the majority of the .csv that holds scaled voter values, senate and house
-candidates, and the percentages of votes for each candidate. Marcus also created the function
-that reads the .csv and stores the data to the AVL Tree and Unordered Map. The other function
-he implemented is the one that creates all of the voters and adds the total counts to the districts
-and states.
 Marissa Manley's main tasks revolved around implementing the code that would access data
 from the AVL tree and Unordered Map and produce the results in an organized and
 easy-to-read format. In our main function, she created a menu that would allow for access to
@@ -68,6 +61,15 @@ election results pulled from either the AVL Tree or the Unordered Map. As part o
 Marissa implemented functions that would traverse the AVL Tree and Unordered Map to obtain
 total national results and all senatorial results. She also helped complete the .csv file used for
 creating the initial states and districts.
+
+Marcus Elosegui's main tasks revolved around implementing the code that would create the
+initial states and districts and generate the voters, as well as filling out the .csv file used. He
+created and filled out the majority of the .csv that holds scaled voter values, senate and house
+candidates, and the percentages of votes for each candidate. Marcus also created the function
+that reads the .csv and stores the data to the AVL Tree and Unordered Map. The other function
+he implemented is the one that creates all of the voters and adds the total counts to the districts
+and states.
+
 Mark Itkin's main tasks revolved around implementing classes that facilitated the AVL tree
 structure as well as comparing the performance of both structures used in the project. He
 created much of the functions in the States and Districts classes, including the get/set functions
@@ -96,60 +98,60 @@ This method traverses the Unordered Map to access all senatorial results
 *insertion of state into Unordered Map*
 Worst case: O(1)
 This method inserts a state into the Unordered Map
-*void nationalInfoMap(unordered_map<string, States>& sMap, int* info)*
+``void nationalInfoMap(unordered_map<string, States>& sMap, int* info)``
 Worst case: O(S), where S is the number of U.S. States
 This method traverses the unordered map of states to access the national data from each state
-*void senatorialInfoAVL(TreeNode* root)*
+``void senatorialInfoAVL(TreeNode* root)``
 Worst case: O(S) where S is the number of U.S. States
 This method traverses the AVL tree of states to access the senatorial data from each state
-*void nationalInfoAVL(TreeNode* root, int* info)*
+``void nationalInfoAVL(TreeNode* root, int* info)``
 Worst case: O(S) where S is the number of U.S. States
 This method traverses the AVL tree of states to access the national data from each state
-*void DataHandler::createVoters()*
+``void DataHandler::createVoters()``
 Worst case: O(S * D * V), where S is the number of U.S. States, D is the number of
 Districts in a given State, and V is the number of votes in a given District
 This method iterates through the total number of voters in very district in every state to generate
 the votes to be inserted in either the AVL tree or the Unordered Map
-*void DataHandler::initData()*
+``void DataHandler::initData()``
 Worst case: O(1)
 This method calls the readCSV() function, the createVoters(function), and the
 calculateElectoralVotes() function
-*void DataHandler::calculateElectoralVotes()*
+``void DataHandler::calculateElectoralVotes()``
 Worst case: O(S), where S is the number of U.S. States
 This method traverses the unordered map of states to gather all the state electoral vote data
-*void DataHandler::readCSV(string filePath, int offset)*
+``void DataHandler::readCSV(string filePath, int offset)``
 Worst case: O( (S * D) +O) , where S is the number of U.S. States, D is the number of
 Districts in a given state, and O is the value for the offset, which is the number of lines
 that need to be ignored while reading the .csv file
-*void States::districtInfo()*
+``void States::districtInfo()``
 Worst case: O(D), where D is the number of Districts in a given State
 This method iterates through all the districts in a state and outputs the relevant district data
-*TreeNode* Tree::search(TreeNode* root, string statename)*
+``TreeNode* Tree::search(TreeNode* root, string statename)``
 Worst case: O(log(S)), where S is the number of U.S. States
 This method searches the AVL tree using the state name and returns the state TreeNode*
-*TreeNode* Tree::insert(TreeNode* root, States *s)*
+``TreeNode* Tree::insert(TreeNode* root, States *s)``
 Worst case: O(log(S)), where S is the number of U.S. States
 This method inserts a state TreeNode* into the AVL tree and calls methods to balance the tree
-*int Tree::height(TreeNode* root)*
+``int Tree::height(TreeNode* root)``
 Worst case: O(S), where S is the number of U.S. States
 This method returns the height of the TreeNode* in the parameter
-*int Tree::balanceValue(TreeNode* root)*
+``int Tree::balanceValue(TreeNode* root)``
 Worst case: O(1)
 This method returns the number of the balance value, which is used to determine if the tree
 needs to be balanced based on the recent insertion/deletion
-*TreeNode* Tree::leftRotate(TreeNode* root)*
+``TreeNode* Tree::leftRotate(TreeNode* root)``
 Worst case: O(1)
 This method rotates the AVL tree left at the given root TreeNode*
-*TreeNode* Tree::rightRotate(TreeNode* root)*
+``TreeNode* Tree::rightRotate(TreeNode* root)``
 Worst case: O(1)
 This method rotates the AVL tree right at the given root TreeNode*
-*TreeNode* Tree::leftRightRotate(TreeNode* root)*
+``TreeNode* Tree::leftRightRotate(TreeNode* root)``
 Worst case: O(1)
 This method rotates the AVL tree left and then right at the given root TreeNode*
-*TreeNode* Tree::rightLeftRotate(TreeNode* root)*
+``TreeNode* Tree::rightLeftRotate(TreeNode* root)``
 Worst case: O(1)
 This method rotates the AVL tree right and then left at the given root TreeNode*
-*void TimeMeasure::compareStructures()*
+``void TimeMeasure::compareStructures()``
 Worst case: O(1)
 This method calls the unordered map and AVL tree search functions and outputs the time
 elapsed for each, and then also outputs the time elapsed for the insertion and traversal
@@ -158,13 +160,13 @@ operation.
 
 ## Performance Comparison of AVL Tree and Unordered Map
 Reviewing the worst case complexities of insertion for each of the structures, it can be seen that the AVL
-Tree performs at a slower rate than the Unordered Map, taking O(log S) time compared to O(1). A similar
-situation can be seen for the search operations, with the AVL tree taking O(log S) time to find a state
-versus O(1) time for the Unordered Map. This difference is due to the structure of the Unordered Map,
+Tree performs at a slower rate than the Unordered Map, taking ``O(log S)`` time compared to ``O(1)``. A similar
+situation can be seen for the search operations, with the AVL tree taking ``O(log S)`` time to find a state
+versus`` O(1)`` time for the Unordered Map. This difference is due to the structure of the Unordered Map,
 which is modeled with a Hashmap. This allows the Unordered Map to have multiple positions at which the
 state can be placed at, and only taking more time when there are collisions in the insertion process. While
 this difference is evident for the search and insertion operations, the traversal operations perform
-similarly, with both structures taking O(S) time to travel through their values. This is simply due to the
+similarly, with both structures taking ``O(S)`` time to travel through their values. This is simply due to the
 inherent necessity of a traversal to pass every value.
 These comparisons of complexity are further displayed in the code itself, with the option to obtain
 runtimes for these operations as well as ratios of AVL Tree time to Unordered Map time. When run, the
@@ -213,7 +215,7 @@ utilizing the platform in such a formal group collaborative manner. In using git
 an opportunity to learn about how we can efficiently work within a group on a program, getting
 familiar with the process of working with other people and integrating each person's code
 together. Outside of github, our team members also learned about how to use the time
-measuring functions from std::chrono.
+measuring functions from ``std::chrono``.
 
 ## References:
 Associated Press, via Google
