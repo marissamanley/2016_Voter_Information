@@ -76,19 +76,6 @@ making sure that they worked with the states and their respective districts. The
 implemented were the TimeMeasure class and the StoringData class, which are used in tandem
 to get performance times of the two structures.
 
-## Changes
-Since the initial group proposal, the changes to the overall project have been
-minimal, as our ideas for the theme issues and project features remained the same. Our data
-structures were switched from an Unordered Map and a Splay Tree to an Unordered Map and
-an AVL Tree. This was because we decided that a self-balancing AVL Tree was a more
-appropriate Data Structure to use for our specific program, which involved accessing State
-nodes using the string name of the state, and would not necessarily need the most recently
-accessed element. Additionally, we solidified the specifics regarding available output options
-and means of accessing the available data on the menu, which included offering National
-election data at both the national and state data, showing all the Senatorial Data at a national
-level, and showing all the District data at the state level.
-
-
 ## Complexity Analysis
 *traversal of Unordered Map to get all senatorial results*  
 Worst case: O(S), where S is the number of U.S. states  
@@ -193,15 +180,6 @@ the program choosing the longest times for each structure, which in turn means i
 where the Unordered Map has collisions in the insertion process.
 
 # Reflection
-## Experience
-The project experience overall was educational and interesting. For some group
-members, this project harbored the introduction to collaborating with other programmers on a
-single program, as well pushing, pulling and committing code through GitHub repositories,
-which is an especially relevant skill to have with regard to Computer Science as a profession.
-Furthermore, the project allowed for additional practice of different Data Structures/Algorithms
-and encouraged a “learning by doing” means of understanding lesser known programming
-concepts.
-
 ## Challenges
 The main challenge that was faced, although a minor one, stemmed from project
 coordination rather than the programming itself. Though each member was on time and never
@@ -209,16 +187,15 @@ was delayed when committing their code, there were brief points when the product
 member was paused because a second member was still working on their part, but such is an
 inevitable byproduct of collaborating on a single program. Otherwise, Compiler and Runtime
 Errors were encountered, but they were amended as soon as they arose. It was also the first
-time all of us got an opportunity to really get familiar with github, so it took some time for us to
+time each member became familiar with github, so it took some time for us to
 get set up and figure out how to utilize github correctly.
 
 ## Changes if redone
 If we were to start this project again, we would try to use a dataset that
-is already in existence, rather than generate random voters. An example of this could be using
-data from the 2016 election instead of the 2020 election. We would also implement options for
+is already in existence, rather than use randomly generated voters. We would also implement options for
 multiple senators in addition to candidates from third-parties. If time allowed, we could
 implement a GUI that allows for users to select the state from an image rather than just from
-menu options. One other possible change is to create more detailed voter profiles to match a
+menu options. Another possible change is to create more detailed voter profiles to match a
 more realistic point of data at the beginning of the counting process. This would include their
 votes from each of the races that they voted in, and store voters individually. Ideally, we would
 also like to include the possibility of having multiple senate races in a state, like in Georgia
