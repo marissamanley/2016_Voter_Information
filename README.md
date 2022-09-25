@@ -1,8 +1,6 @@
 # 2016_Voter_Information
 
-## Team Name
-M^4EI
-## Team Members
+## Contributors
 Marissa Manley, Marcus Elosegui, Mark Itkin
 
 Link to Video: https://youtu.be/yeZA8jq4Hks
