@@ -9,7 +9,6 @@
 #include <iostream>
 #include "Districts.h"
 #include "Voter.h"
-
 /*
  * This class hold information about each state. The information held is:
  *  - State name
