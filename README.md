@@ -7,22 +7,24 @@ Link to Video: https://youtu.be/yeZA8jq4Hks
 
 # Proposal
 ## Problem
-Over the past decade there have been discussions over whether online elections are
+There have been discussions throughout the last decade over whether online elections are
 feasible and whether they could replace physical elections. Such a system would require a
-strong defense against attacks, while also having a reliable and convenient vote counting
+strong defense against attacks while also having a reliable and convenient vote counting
 process. How a vote counting and result displaying system could be implemented is the
 problem we seek to solve.
 
 ## Motivation
-If online elections become more of a possibility, it will be important to understand
+If online elections become feasible, it will be important to understand
 some possible solutions for storing voter data and producing election results. We want to
 provide a preliminary implementation for this part of the online voting process. This sets up an
 initial step from which a more involved and fully-fledged structure can be built.
-Features Implemented: The program allows the user to access all generated national,
+
+## Features Implemented
+The program allows the user to access randomly generated national,
 senatorial, and representative election data from the 2020 election. The user can select whether
 to access the data from the AVL Tree or the Unordered Map, or to complete a Time
 Comparison. Then, the user can select whether to see the national election data on the national
-level, select to see the senatorial election data for all 50 U.S. states, or input a number
+level or the senatorial election data for all 50 U.S. states, or input a number
 associated with each of the 50 U.S. states. If a state is selected, the user can select whether to
 see the national election data on the state level, the senatorial election data for that state, all the
 representative election data for that state, or they can select to choose one of the district’s
@@ -37,7 +39,9 @@ based on the percentages and logs the vote in voter counts for Democrat candidat
 Republican candidates, and other candidates. In addition, the total amount of votes generated
 for each category is limited by a scaled value of votes. This allows for a smaller sample size,
 bringing the total amount of votes nationally from around 160 million to about 160 thousand.
-Tools/Languages/APIs/Libraries used: We used C++ as our language to create this software,
+
+## Tools/Languages/APIs/Libraries used 
+We used C++ as our language to create this software,
 and we used the standard library available for C++ for much of our functions on Visual Studio
 2017/2019.
 
@@ -52,15 +56,19 @@ implemented in the library as a Hashmap, it allows us to get a comparison of per
 AVL Tree to a Hashmap.
 
 ## Distribution of Responsibility and Roles
-Marissa Manley's main tasks revolved around implementing the code that would access data
+All team members worked on every aspect of the project, but each member was allocated a section of the project to primarily focus on.
+
+Marissa Manley's primary tasks involved implementing the code that would access data
 from the AVL tree and Unordered Map and produce the results in an organized and
-easy-to-read format. In our main function, she created a menu that would allow for access to
+easy-to-read format. Marissa also created the Tree and TreeNode classes,
+making sure that they worked with the states and their respective districts. In our main function, 
+she created a menu that would allow for access to
 election results pulled from either the AVL Tree or the Unordered Map. As part of the menu,
 Marissa implemented functions that would traverse the AVL Tree and Unordered Map to obtain
 total national results and all senatorial results. She also helped complete the .csv file used for
 creating the initial states and districts.
 
-Marcus Elosegui's main tasks revolved around implementing the code that would create the
+Marcus Elosegui's primary tasks involved implementing the code that would create the
 initial states and districts and generate the voters, as well as filling out the .csv file used. He
 created and filled out the majority of the .csv that holds scaled voter values, senate and house
 candidates, and the percentages of votes for each candidate. Marcus also created the function
@@ -68,11 +76,10 @@ that reads the .csv and stores the data to the AVL Tree and Unordered Map. The o
 he implemented is the one that creates all of the voters and adds the total counts to the districts
 and states.
 
-Mark Itkin's main tasks revolved around implementing classes that facilitated the AVL tree
+Mark Itkin's primary tasks involved implementing classes that facilitated the AVL tree
 structure as well as comparing the performance of both structures used in the project. He
 created much of the functions in the States and Districts classes, including the get/set functions
-and the percentage calculating functions. Mark also created the Tree and TreeNode classes,
-making sure that they worked with the states and their respective districts. The other classes he
+and the percentage calculating functions. The other classes he
 implemented were the TimeMeasure class and the StoringData class, which are used in tandem
 to get performance times of the two structures.
 
