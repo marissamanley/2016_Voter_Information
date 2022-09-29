@@ -43,8 +43,6 @@ public:
 	static std::unordered_map<std::string, States> stateMap;
     static Tree* stateTree;
     static StoringData st;
-    static int demElectoralVotes();
-    static int repElectoralVotes();
     static int demElectors;
     static int repElectors;
 };

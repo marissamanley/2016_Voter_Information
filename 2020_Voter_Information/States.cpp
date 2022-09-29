@@ -149,22 +149,22 @@ Voter::party States::determineWinner() {
 // Gets percentages for each office; used for the main menu
 float States::getPercent(int num) {
 	if (num == 0) {
-		return 100*(float)democratPresVotes / (float)voterCapacity;
+		return 100 * ((float)democratPresVotes / (float)voterCapacity);
 	}
 	else if (num == 1) {
-		return 100*(float)republicanPresVotes / (float)voterCapacity;
+		return 100 * ((float)republicanPresVotes / (float)voterCapacity);
 	}
 	else if (num == 2){
-		return 100*(float)otherPresVotes / (float)voterCapacity;
+		return 100 * ((float)otherPresVotes / (float)voterCapacity);
 	}
 	else if (num == 3) {
-		return 100*(float)democratSenVotes / (float)voterCapacity;
+		return 100 *((float)democratSenVotes / (float)voterCapacity);
 	}
 	else if (num == 4) {
-		return 100*(float)republicanSenVotes / (float)voterCapacity;
+		return 100 * ((float)republicanSenVotes / (float)voterCapacity);
 	}
 	else if (num == 5) {
-		return 100*(float)otherSenVotes / (float)voterCapacity;
+		return 100 * ((float)otherSenVotes / (float)voterCapacity);
 	}
 }
 

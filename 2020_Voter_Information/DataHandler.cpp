@@ -105,9 +105,7 @@ void DataHandler::createVoters() {
 		TreeNode* curTreeState = stateTree->search(stateTree->root, curState.getState());
 		for (int i = 1; i < iter->second.getNumDistricts() + 1; i++) {
 			auto& curDistrict = iter->second.districtMap[i];
-			int demCount = 0;
-			int repCount = 0;
-			int otherCount = 0;
+			int demCount = 0, repCount = 0, otherCount = 0;
 			//loops through the number of voters within that district
 			for (int voter = 0; voter < curDistrict.getVoterCapacity(); voter++) {
 				//generates voter party
@@ -137,7 +135,6 @@ void DataHandler::createVoters() {
 	}
 }
 
-
 /*
  * This method calculates the amount of electoral votes assigned to each candidate by looping
  * through the state and retrieving which candidate won the popular vote
@@ -161,16 +158,6 @@ void DataHandler::calculateElectoralVotes() {
 			break;
 		}
 	}
-}
-
-
-// These are getter functions for the elector votes
-int DataHandler::demElectoralVotes() {
-	return demElectors + 3;
-}
-
-int DataHandler::repElectoralVotes() {
-	return repElectors;
 }
 
 // This calls upon these methods to initialize all data used for the menu

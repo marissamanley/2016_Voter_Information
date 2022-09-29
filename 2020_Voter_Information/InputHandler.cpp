@@ -46,11 +46,11 @@ void InputHandler::nationalInfoMap() {
         demVotes += i->second.getDemPresVotes();
         repVotes += i->second.getRepPresVotes();
         othVotes += i->second.getOtherPresVotes();
-        total += i->second.getVoterCapacity();
     }
-    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", demVotes, ((double)demVotes) / total * 100, DataHandler::demElectoralVotes());
-    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", repVotes, ((double)repVotes) / total * 100, DataHandler::repElectoralVotes());
-    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n\n", othVotes, ((double)othVotes) / total * 100);
+    total = demVotes + repVotes + othVotes;
+    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", demVotes, ((double)demVotes / total) * 100, DataHandler::demElectors+3);
+    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", repVotes, ((double)repVotes / total) * 100, DataHandler::repElectors);
+    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n\n", othVotes, ((double)othVotes / total) * 100);
 }
 
 void InputHandler::nationalInfoTree() {
@@ -59,9 +59,9 @@ void InputHandler::nationalInfoTree() {
     int total = info[0] + info[1] + info[2];
     std::cout << "-----------------------------------------------------------------------------------------------------------" << std::endl;
     std::cout << "National Election Data:" << std::endl;
-    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[0], ((double)info[0]) / total * 100, DataHandler::demElectoralVotes());
-    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[1], ((double)info[1]) / total * 100, DataHandler::repElectoralVotes());
-    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n", info[2], ((double)info[2]) / total) * 100;
+    printf("Candidate Name: Joe Biden                 | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[0], ((double)info[0] / total) * 100, DataHandler::demElectors+3);
+    printf("Candidate Name: Donald Trump              | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: %d\n", info[1], ((double)info[1] / total) * 100, DataHandler::repElectors);
+    printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n", info[2], ((double)info[2] / total) * 100);
     std::cout << std::endl;
 }
 
