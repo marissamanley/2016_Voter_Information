@@ -10,6 +10,7 @@
 #include "TimeMeasure.h"
 #include "InputHandler.h"
 
+//Begins the program by outputting the welcome messages and processing the initial user input
 void InputHandler::Start() {
     while (sortInput != 0) { //Continues the program until user inputs 0 to exit data search
         std::cout << "Welcome to the 539 Election Data Search!" << std::endl;
@@ -53,6 +54,7 @@ void InputHandler::nationalInfoMap() {
     printf("Candidate Name: Other                     | Vote Count: %-5d | Vote Percentage: %.2f%% | Electoral Votes: 0\n\n", othVotes, ((double)othVotes / total) * 100);
 }
 
+//Iterates through the AVL Tree of states to acquire National Election data
 void InputHandler::nationalInfoTree() {
     int info[3] = { 0 };
     DataHandler::stateTree->nationalInfoAVL(DataHandler::stateTree->root, info);
@@ -65,6 +67,7 @@ void InputHandler::nationalInfoTree() {
     std::cout << std::endl;
 }
 
+//Outputs all Senatorial Data from either the AVL Tree or unordered map
 void InputHandler::nationalSenatorialData() {
     if (sortInput == 1) {//Accesses data through the unordered map
         for (auto j = DataHandler::stateMap.begin(); j != DataHandler::stateMap.end(); j++) {
@@ -82,20 +85,20 @@ void InputHandler::nationalSenatorialData() {
         }
     }
     else {//Accessed data through the AVL tree 
-        DataHandler::stateTree->senatorialInfoAVL(DataHandler::stateTree->root, true); //Outputs all Senatorial Data for all US states from the AVL tree
+        DataHandler::stateTree->senatorialInfoAVL(DataHandler::stateTree->root, true); 
     }
 }
 
-
+// Retrieves the correct State information based on the used input
 void InputHandler::stateSelect(int input) {
     int selectedState = input - 1;
     States state;
     TreeNode* stateNode;
-    if (sortInput == 1)
-        state = DataHandler::stateMap[meas.states[selectedState]]; //State object initialized based on user input from the unordered map
-    else {
+    if (sortInput == 1) //Map
+        state = DataHandler::stateMap[meas.states[selectedState]]; 
+    else { //Tree
         stateNode = DataHandler::stateTree->search(DataHandler::stateTree->root, meas.states[selectedState]);
-        state = stateNode->state; //State object initialized based on user input from the AVL tree
+        state = stateNode->state; 
     }
     std::cout << "-----------------------------------------------------------------------------------------------------------" << std::endl;
     std::cout << "State: " << state.getState() << std::endl;
@@ -157,9 +160,10 @@ void InputHandler::stateSelect(int input) {
     }
 }
 
+// Retrieves data based on user input
 void InputHandler::dataAccess() {
     int input = 1;
-    while (input != 0) { //Loops through State Search unti user exits to Data Access Method Selection
+    while (input != 0) { 
         std::cout << "-----------------------------------------------------------------------------------------------------" << std::endl;
         std::cout << "\nPlease input one of the folowing to select the National Election Data, all Senatorial data, or a specific state:" << std::endl;
         std::cout << "[0] Return to Data Access Method Selection" << std::endl;
@@ -179,18 +183,18 @@ void InputHandler::dataAccess() {
         std::cout << "Selection: ";
         std::cin >> input;
 
-        if (input == 51) { //Selection that outputs National Election Data
-            if (sortInput == 1) { //Accesses data through the unordered map
+        if (input == 51) { //National Election Data
+            if (sortInput == 1) { //unordered map
                 nationalInfoMap();
             }
-            else { //Accesses data through the AVL tree
+            else { //AVL tree
                 nationalInfoTree();
             }
         }
-        else if (input == 52) {//Selection that outputs all Senatorial Data
+        else if (input == 52) {//All Senatorial Data
             nationalSenatorialData();
         }
-        else if (input >= 1 && input <= 50) {//Selection for one of the 50 US States 
+        else if (input >= 1 && input <= 50) {//Selected state 
             stateSelect(input);
         }
     }

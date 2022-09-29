@@ -1,7 +1,7 @@
 #include "States.h"
 
 //created so you can instantiate a states object to call the readCSV function
-States::States() {};
+States::States() {}
 
 // Constructor with parameters that take in information from the csv file
 States::States(std::string state, int voterCapacity, int numDistricts, std::string demSenator, std::string repSenator, int electoralVotes) {

@@ -6,6 +6,3 @@ int main() {
     InputHandler inputHandler;    
     inputHandler.Start();
 }
-
-
-

@@ -1,6 +1,6 @@
 #include "Districts.h"
 
-// Constructor that takes in parameters from the CSV
+// Constructor that takes in parameters from the .csv
 Districts::Districts(int district, int voterCapacity, float percentDem, float percentRep, std::string democratRep, std::string republicanRep) {
 	this->district = district;
 	this->voterCapacity = voterCapacity;
@@ -11,7 +11,6 @@ Districts::Districts(int district, int voterCapacity, float percentDem, float pe
 	this->initPercentOther = 1 - (percentDem + percentRep);
 }
 
-// Many setter and getter functions for district information
 int Districts::getDistrict() {
 	return this->district;
 }

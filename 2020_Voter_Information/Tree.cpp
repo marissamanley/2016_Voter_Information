@@ -144,7 +144,7 @@ TreeNode* Tree::findInorderSuccessor(TreeNode* root) {
 	return t;
 }
 
-//hcecks the height recursively in the children and returns the larger value + 1 to add the current position
+//checks the height recursively in the children and returns the larger value + 1 to add the current position
 int Tree::height(TreeNode* root) {
 	//base condition
 	if (root == nullptr) {

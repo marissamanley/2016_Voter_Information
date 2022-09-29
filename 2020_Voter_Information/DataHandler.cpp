@@ -6,28 +6,18 @@ Tree* DataHandler::stateTree = new Tree();
 StoringData DataHandler::st;
 int DataHandler::demElectors;
 int DataHandler::repElectors;
-
 /*
  * Reads the District_map CSV file to form the stateMap and DistrictMap structures
- *  The information is: state name, names of senators, electoral college voters, number of voters,
- *			    	    number of districts, distict candidates, party representation of that district
- *
- * States are in alphabetical order in csv
- **
+ * Information order: state name, names of senators, electoral college voters, number of voters,
+ * number of districts, distict candidates, party representation of that district.
  */
 void DataHandler::readCSV(std::string filePath, int offset) {
 	std::ifstream file(filePath);
 	std::string lineFromFile;
-
-	/*
-	 * Offset brings you to the state that you want to visit.
-	 * Ex: Offset = 0 brings you to first state, Alabama
-	 * This automatically skips the first two rows of the csv
-	 */
+	// Automatically skips the first two rows of the .csv
 	for (int i = 0; i < offset + 2; i++) {
 		getline(file, lineFromFile);
 	}
-
 	while (getline(file, lineFromFile)) {
 		std::istringstream streamFromAString(lineFromFile);
 
@@ -89,11 +79,10 @@ void DataHandler::readCSV(std::string filePath, int offset) {
 	}
 }
 
-
 /*
- * This function loops through every state and every district within that state
- * It calls upon the voter class to generate a every voter based on party percentages within that district
- * The addvote methods are then called upon to store this voting data within each state
+ * This function loops through every state and every district within that state.
+ * It calls upon the voter class to generate a every voter based on party percentages within that district.
+ * The addvote methods are then called upon to store this voting data within each state.
  */
 void DataHandler::createVoters() {
 	auto iter = DataHandler::stateMap.begin();
