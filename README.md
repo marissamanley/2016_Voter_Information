@@ -1,4 +1,4 @@
-# 2016_Voter_Information
+# 2020_Voter_Information
 
 ## Contributors
 Marissa Manley, Marcus Elosegui, Mark Itkin
