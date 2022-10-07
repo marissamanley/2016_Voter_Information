@@ -1,4 +1,4 @@
-# 2020_Voter_Information
+# 2020 Voter Information AVL Tree
 
 ## Contributors
 Marissa Manley, Marcus Elosegui, Mark Itkin
